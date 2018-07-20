@@ -1,25 +1,31 @@
 <?php
+	date_default_timezone_set('Asia/Jakarta');
+	// define("BASE_PATH", true);
+
 	// inisilisasi var $_GET
 	$get_chart = isset($_GET['chart']) ? $_GET['chart'] : false;
 
+	/**
+	* List $_GET['chart']
+	* chart1 => mengarah ke folder chart1/chart.php
+	* chart2 => mengarah ke folder chart2/chart.php
+	* chart3 => mengarah ke folder chart3/chart.php
+	* chart4 => mengarah ke folder chart4/chart.php
+	* chart5 => mengarah ke folder chart5/chart.php
+	*/
+
 	// cek $_GET
-	if(!$get_chart) die('Pastikan URL Anda Benar');
+	if(!$get_chart) 
+		die('Pastikan URL Anda Benar');
 	else{
-		switch (strtolower($get_chart)) {
-			case 'chart1':
-				# code...
-				break;
+		$filename = strtolower($get_chart).'/index.php';
 
-			case 'chart1':
-				# code...asdasdasda
-				break;
-
-			case 'chart1':sadasdasd
-				# code...
-				break;
-
-			default:
-				# code...
-				break;
-		}
+		// cek request ada filenya atau tidak 
+		if(!file_exists($filename)) 
+			die('Terjadi Kesalahan Sistem');
+		else{
+			// require file layout
+			require_once $filename;
+		} 
+			
 	}

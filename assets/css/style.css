@@ -1,0 +1,141 @@
+@font-face {
+	font-family: "Font Digital";
+	src: url('../font/BpmonlineOpenSans-Light.woff');
+}
+@font-face {
+	font-family: "Font Digital2";
+	src: url('../font/BpmonlineOpenSans.woff');
+}
+
+.jdl{
+	line-height:23px;
+	font-size:30px;
+	font-family:"Font Digital";
+	color:#374664;
+	height:30px;
+}
+
+.tbl-qa {
+    border-collapse: collapse;
+    width: 100%;
+	font-family:"Font Digital2";
+	font-size:14px;
+	color:#5c5c57;	
+}
+
+.tbl-qa th {
+	text-align: left;
+	padding: 8px;
+	border-bottom:1px solid #e0e0e0;
+	color:#8d8d8d;
+	font-family:"Font Digital2";
+	font-size:14px;
+	font-weight:500;
+}
+
+.text-input{
+	font-family:"Font Digital2";
+	font-size:14px;
+	color:#5c5c57;
+}
+
+.tbl-qa td {
+    text-align: left;
+    padding: 8px;
+}
+
+.tbl-qa tr:nth-child(even){
+	background-color: #f7f7f7
+}
+
+#heder{
+	font-family:"Font Digital2";
+	color:#FFF;
+	font-size:16px;
+	border-bottom:1px solid #717b91;
+	border-top:1px solid #717b91;
+	margin-top:50px;
+}
+
+#head4{
+	border-radius:0px 0px 0 0;
+	background-color:#6483c3;
+	padding:0px 0px 0px 0px;
+	font-size:20px;
+	color:#ffff;
+	font-family:"Font Digital2";
+	width:100%;
+	height:20%;
+}
+
+#container{
+	width:100%;
+	height:80%;
+	border-radius:0 0 0px 0px;
+	font-family:"Font Digital2";
+}
+
+#container2{
+	width:100%;
+	height:500px;
+	border-radius:0 0 0px 0px;
+	font-family:"Font Digital2";
+    background-color:#FFF;
+  	overflow-y: scroll; /* has to be scroll, not auto */
+  	-webkit-overflow-scrolling: touch;
+}
+
+#container3{
+	width:100%;
+	height:100%;
+	border-radius:0 0 0px 0px;
+	font-family:"Font Digital2";
+	color:#000;
+    background-color:#FFF;
+}
+
+#container7{
+	width:100%;
+	height:500px;
+	border-radius:0 0 0px 0px;
+	font-family:"Font Digital2";
+ 	overflow-y: scroll; /* has to be scroll, not auto */
+ 	-webkit-overflow-scrolling: touch;
+}
+
+#container8{
+	width:100%;
+	height:auto;
+	border-radius:0 0 0px 0px;
+	font-family:"Font Digital2";
+ 	overflow-y: scroll; /* has to be scroll, not auto */
+ 	-webkit-overflow-scrolling: touch;
+}
+
+#dem{
+	cursor:pointer;
+}
+
+#tot{
+    font-family:"Font Digital2";
+	font-size:14px;
+	color:#5c5c57;
+    padding-left:10px;
+}
+
+#legendary{
+    font-family:"Font Digital2";
+	font-size:14px;
+	color:#5c5c57;
+    padding-left:10px;
+}
+
+#sasaran{
+	text-decoration:none;
+	color:#6483c3;
+}
+
+.pilihMap{
+	font-size:20px;
+	text-align:center;
+}
