@@ -2,6 +2,19 @@ $(document).ready(function(){
 	get_data_chart(function(data){
 		generate_chart('body-highchart', data);
 	});
+
+	// on click btn highchart
+	$('#btn_highchart').on('click', function(){
+		back_highchart();
+	});
+
+	// onChange tahun dan bulan
+	$('#tahun #bulan').on('change', function(){
+		// reload highchart
+		get_data_chart(function(data){
+			generate_chart('body-highchart', data);
+		});		
+	});
 });
 
 /**
@@ -124,6 +137,24 @@ function generate_chart(container, data){
 /**
 *
 */
+function addEvent_onClick(data){
+	// add event on click pada bar
+	$.each(data.series, function(i, item){
+		data.series[i].point = {
+			events: {
+				click: function(event){
+					get_detail_data(this.id);
+				}
+			}
+		}
+	});
+
+	return data;
+}
+
+/**
+*
+*/
 function setLegend(data){
 	var legend_rkap = '<img src="assets/image/image2/merah.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
 					'<span style="color:#ed7d64;">'+data.rkap+'</span></br>';
@@ -138,17 +169,10 @@ function setLegend(data){
 /**
 *
 */
-function addEvent_onClick(data){
-	// add event on click pada bar
-	$.each(data.series, function(i, item){
-		data.series[i].point = {
-			events: {
-				click: function(event){
-					get_detail_data(this.id);
-				}
-			}
-		}
-	});
+function back_highchart(){
+	// hide detail
+	$('.container-detail').hide();
 
-	return data;
+	// show highchart
+	$('.container-highchart').show();
 }

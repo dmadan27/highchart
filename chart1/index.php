@@ -32,22 +32,20 @@
 				</table>
 			</div>
 
-			<!-- form tahun dan bulan -->
-			<div class="form-highchart">
-				<!-- gambar calendar -->
-				<img src="assets/image/image2/calender.png" style="width:16px; height:16px; padding-top:5px;">
-				<!-- select bulan -->
-				<select id="bulan"></select>
-				<!-- select tahun -->
-				<select id="tahun"></select>
-			</div>
-
 			<!-- highchart -->
 			<div class="container-highchart">
-				<!-- data total menyeluruh highchart -->
-				<div id="total-highchart" class="form-highchart" style="text-align: right; color: #6483c3">
-					Total Keseluruhan: 
+				<!-- form tahun dan bulan -->
+				<div class="form-highchart">
+					<!-- gambar calendar -->
+					<img src="assets/image/image2/calender.png" style="width:16px; height:16px; padding-top:5px;">
+					<!-- select bulan -->
+					<select id="bulan"></select>
+					<!-- select tahun -->
+					<select id="tahun"></select>
 				</div>
+
+				<!-- data total menyeluruh highchart -->
+				<div id="total-highchart" class="form-highchart" style="text-align: right; color: #6483c3"></div>
 
 				<!-- highchart -->
 				<div id="body-highchart"></div>
