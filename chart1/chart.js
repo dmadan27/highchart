@@ -35,10 +35,6 @@ function get_data_chart(handleData){
 *
 */
 function generate_chart(container, data){
-	// set total-highchart
-
-	// set legend-highchart
-
 	// set option highchart
 	Highcharts.setOptions({
 		lang: {
@@ -47,7 +43,14 @@ function generate_chart(container, data){
 		}
 	});
 
+	// add event onclick pada tiap bar
 	data = addEvent_onClick(data);
+
+	// set total-highchart
+	$('#total-highchart').html('<b>'+data.total_highchart+'</b>');
+
+	// set legend-highchart
+	setLegend(data.legend_highchart);
 
 	// generate chart
 	var myChart = Highcharts.chart(container, {
@@ -116,6 +119,20 @@ function generate_chart(container, data){
 		},
 		series: data.series
 	});
+}
+
+/**
+*
+*/
+function setLegend(data){
+	var legend_rkap = '<img src="assets/image/image2/merah.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+					'<span style="color:#ed7d64;">'+data.rkap+'</span></br>';
+	var legend_terendah = '<img src="assets/image/image2/biru.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+					'<span style="color:#64b8df;">'+data.terendah+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+	var legend_terkontrak = '<img src="assets/image/image2/hijau.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+					'<span style="color:#8ecb60;">'+data.terkontrak+'</span>';
+
+	$('#legend-highchart').html(legend_rkap+legend_terendah+legend_terkontrak);
 }
 
 /**

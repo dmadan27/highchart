@@ -106,6 +106,10 @@
 	$data_rkap = $data_terendah = array();
 	$data_terkontrak = $categories = array();
 	
+	// inisialisasi var untuk total_highchart dan data di legend
+	$total_sum_terendah_terkontrak = $total_rkap = 0;
+	$total_terendah = $total_terkontrak = 0;
+
 	// pecah anak perusahaan untuk passing data
 	foreach ($anak_perusahaan as $key => $value) {
 		$dataValue_rkap = $dataValue_terendah = $dataValue_terkontrak = array();
@@ -121,12 +125,25 @@
 		// passing label
 		$categories[] = $value['name'].' | Diperoleh : '.$value['sum_terendah_terkontrak'].' T';
 
+		// passing data total-highchart
+		$total_sum_terendah_terkontrak += $value['sum_terendah_terkontrak']; 
 		
-		
+		// hitung data total rkap, terendah dan terkontrak
+		$total_rkap += $value['rkap'];
+		$total_terendah += $value['terendah'];
+		$total_terkontrak += $value['terkontrak'];
+
 		$data_rkap[] = $dataValue_rkap;
 		$data_terendah[] = $dataValue_terendah;
 		$data_terkontrak[] = $dataValue_terkontrak;
 	}
+
+	// passing data total rkap, terendah dan terkontrak ke legend
+	$legend_highchart = array(
+		'rkap' => '<b>RKAP : '.number_format($total_rkap/1000000, 2, ',', ',').' T</b>',
+		'terendah' => '<b> Terendah : '.number_format($total_terendah/1000000, 2, ',', ',').' T</b>',
+		'terkontrak' => '<b> Terkontrak : '.number_format($total_terkontrak/1000000, 2, ',', ',').' T</b>',
+	);
 
 	// output yg akan dikirim ke highchart
 	$output = array(
@@ -156,8 +173,8 @@
 				'color' => '#8ecb60',
 			),
 		),
-		'total-highchart' => ,
-		'legend-highchart' => ,
+		'total_highchart' => 'Total Diperoleh : '.number_format($total_sum_terendah_terkontrak, 2, ',', ','),
+		'legend_highchart' => $legend_highchart,
 	);
 
 	echo json_encode($output);
