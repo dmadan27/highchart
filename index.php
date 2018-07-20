@@ -11,13 +11,13 @@
 				break;
 
 			case 'chart1':
+				# code...asdasdasda
+				break;
+
+			case 'chart1':sadasdasd
 				# code...
 				break;
 
-			case 'chart1':
-				# code...
-				break;
-			
 			default:
 				# code...
 				break;
