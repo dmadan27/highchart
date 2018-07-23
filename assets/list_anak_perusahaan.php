@@ -8,14 +8,12 @@
 			'terendah' => 0,
 			'terkontrak' => 0,
 			'sum_terendah_terkontrak' => 0,
-<<<<<<< HEAD
 			'diperoleh' => 0,
 			'nilai_tactic' => 0,
 			'ci_nilai' => 0,
 			'ci_jumlah' => 0,
-=======
 			'jumlah_proyek' => 0,
->>>>>>> 14a756b6e79de88949544cda0e876022387851d2
+			'jumlah_terendah_terkontrak' => 0,
 		),
 		array(
 			'company' => 'c0b9186f-75d6-4865-b0f3-890d7db8fa2e',
@@ -24,14 +22,12 @@
 			'terendah' => 0,
 			'terkontrak' => 0,
 			'sum_terendah_terkontrak' => 0,
-<<<<<<< HEAD
 			'diperoleh' => 0,
 			'nilai_tactic' => 0,
 			'ci_nilai' => 0,
 			'ci_jumlah' => 0,
-=======
 			'jumlah_proyek' => 0,
->>>>>>> 14a756b6e79de88949544cda0e876022387851d2
+			'jumlah_terendah_terkontrak' => 0,
 		),
 		array(
 			'company' => '514f7570-0c8f-4589-9368-69465c8b5ed2',
@@ -40,14 +36,12 @@
 			'terendah' => 0,
 			'terkontrak' => 0,
 			'sum_terendah_terkontrak' => 0,
-<<<<<<< HEAD
 			'diperoleh' => 0,
 			'nilai_tactic' => 0,
 			'ci_nilai' => 0,
 			'ci_jumlah' => 0,
-=======
 			'jumlah_proyek' => 0,
->>>>>>> 14a756b6e79de88949544cda0e876022387851d2
+			'jumlah_terendah_terkontrak' => 0,
 		),
 		array(
 			'company' => '8d6255cb-1067-4ac9-a9bf-9c086363267',
@@ -56,14 +50,12 @@
 			'terendah' => 0,
 			'terkontrak' => 0,
 			'sum_terendah_terkontrak' => 0,
-<<<<<<< HEAD
 			'diperoleh' => 0,
 			'nilai_tactic' => 0,
 			'ci_nilai' => 0,
 			'ci_jumlah' => 0,
-=======
 			'jumlah_proyek' => 0,
->>>>>>> 14a756b6e79de88949544cda0e876022387851d2
+			'jumlah_terendah_terkontrak' => 0,
 		),
 		// ganti
 		array(
@@ -73,14 +65,12 @@
 			'terendah' => 0,
 			'terkontrak' => 0,
 			'sum_terendah_terkontrak' => 0,
-<<<<<<< HEAD
 			'diperoleh' => 0,
 			'nilai_tactic' => 0,
 			'ci_nilai' => 0,
-			'ci_jumlah' => 0,		
-=======
+			'ci_jumlah' => 0,
 			'jumlah_proyek' => 0,
->>>>>>> 14a756b6e79de88949544cda0e876022387851d2
+			'jumlah_terendah_terkontrak' => 0,
 		),
 		array(
 			'company' => '73bf37c7-8bde-4678-92d7-1b9882bbd1a4',
@@ -89,14 +79,12 @@
 			'terendah' => 0,
 			'terkontrak' => 0,
 			'sum_terendah_terkontrak' => 0,
-<<<<<<< HEAD
 			'diperoleh' => 0,
 			'nilai_tactic' => 0,
 			'ci_nilai' => 0,
 			'ci_jumlah' => 0,
-=======
 			'jumlah_proyek' => 0,
->>>>>>> 14a756b6e79de88949544cda0e876022387851d2
+			'jumlah_terendah_terkontrak' => 0,
 		),
 		array(
 			'company' => 'cc7c5a60-2e2a-424e-852b-562bbf0a239d',
@@ -105,13 +93,11 @@
 			'terendah' => 0,
 			'terkontrak' => 0,
 			'sum_terendah_terkontrak' => 0,
-<<<<<<< HEAD
 			'diperoleh' => 0,
 			'nilai_tactic' => 0,
 			'ci_nilai' => 0,
 			'ci_jumlah' => 0,
-=======
 			'jumlah_proyek' => 0,
->>>>>>> 14a756b6e79de88949544cda0e876022387851d2
+			'jumlah_terendah_terkontrak' => 0,
 		),
 	);
