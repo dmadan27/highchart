@@ -75,11 +75,9 @@
 		}
 	}
 
-	$label_total = ($get_jenis == 'RKAP') ? 'Total RKAP: '.number_format($total, 0, ',', '.') : 'Total Diperoleh: '.number_format($total, 0, ',', '.');
-
 	$output = array(
 		'data' => $data,
-		'total' => $label_total,
+		'total' => ($get_jenis == 'RKAP') ? 'Total RKAP: '.number_format($total, 0, ',', '.') : 'Total Diperoleh: '.number_format($total, 0, ',', '.'),
 	);
 
 	echo json_encode($output);

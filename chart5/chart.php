@@ -3,66 +3,8 @@
 	$get_tahun = isset($_POST['tahun']) ? $_POST['tahun'] : false;
 	$get_bulan = isset($_POST['bulan']) ? $_POST['bulan'] : false;
 
-	// mapping anak perusahaan
-	$anak_perusahaan = array(
-		array(
-			'company' => '4547d242-0ed5-4d09-ac37-420e5e19a703',
-			'name' => 'Witon (Wika Beton)',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => 'c0b9186f-75d6-4865-b0f3-890d7db8fa2e',
-			'name' => 'Wikon',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => '514f7570-0c8f-4589-9368-69465c8b5ed2',
-			'name' => 'WR (Wika Realty)',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => '8d6255cb-1067-4ac9-a9bf-9c086363267',
-			'name' => 'WG (Wika Gedung)',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		// ganti
-		array(
-			'company' => '9c791f07-bf39-4186-a317-7965e547dde7',
-			'name' => 'Wijaya Karya',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => '73bf37c7-8bde-4678-92d7-1b9882bbd1a4',
-			'name' => 'Bitumen',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => 'cc7c5a60-2e2a-424e-852b-562bbf0a239d',
-			'name' => 'Serpan',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-	);
+	// load list anak perusahaan
+	require_once '../assets/list_anak_perusahaan.php';
 
 	// get data wika
 	$get_data = file_get_contents("https://aarmindonesia.org/wikabpm/highchart/live%20Version/json/json_ALL.php?tahun=".$get_tahun."&company=yes");
@@ -83,8 +25,10 @@
 
 		$company = $value['Company'];
 		$status = $value['Status'];
-		$rkap = $value['RKAP'];
+		$nilaitactic = $value['Tactic'];
 		$diperoleh = $value['Diperoleh'];
+		$ci_nilai = $value['CI_Nilai'];
+
 
 		// jika bulan lebih kecil sama dengan get bulan
 		if($month <= $get_bulan){
@@ -92,12 +36,13 @@
 			foreach($temp_anak_perusahaan as $key => $row){
 				// jika ada yg sesuai dgn anak perusahaan
 				if($company == $row['company']){
-					$anak_perusahaan[$key]['rkap'] += $rkap;
-					if($status == 'Terendah') $anak_perusahaan[$key]['terendah'] += $diperoleh;
-					if($status == 'Terkontrak') $anak_perusahaan[$key]['terkontrak'] += $diperoleh;
+					$anak_perusahaan[$key]['nilai_tactic'] += $nilaitactic;
+
+					if($status == 'Terendah' || $status == 'Terkontrak') $anak_perusahaan[$key]['diperoleh'] += $diperoleh;
+
 				}
-				// sum terendah + terkontrak
-				$anak_perusahaan[$key]['sum_terendah_terkontrak'] = $anak_perusahaan[$key]['terendah'] + $anak_perusahaan[$key]['terkontrak'];
+				// CI_Nilai persentase = (terendah + terkontrak) / Jumlah Proyek * 100)
+				$anak_perusahaan[$key]['ci_nilai'] = $anak_perusahaan[$key]['nilai_tactic'] / $anak_perusahaan[$key]['diperoleh'] * 100;
 			}
 		}
 	}
@@ -123,7 +68,7 @@
 		$dataValue_terkontrak['y'] = $value['terkontrak']/1000000;
 		
 		// passing label
-		$categories[] = $value['name'].' | Diperoleh : '.$value['sum_terendah_terkontrak'].' T';
+		$categories[] = $value['name'].' | CI = '.$value['sum_terendah_terkontrak'].' %';
 
 		// passing data total-highchart
 		$total_sum_terendah_terkontrak += $value['sum_terendah_terkontrak']; 
@@ -140,8 +85,8 @@
 
 	// passing data total rkap, terendah dan terkontrak ke legend
 	$legend_highchart = array(
-		'rkap' => '<b>RKAP : '.number_format($total_rkap/1000000, 2, ',', ',').' T</b>',
-		'terendah' => '<b> Terendah : '.number_format($total_terendah/1000000, 2, ',', ',').' T</b>',
+		'rkap' => '<b>Jumlah Nilai Proyek : '.number_format($total_rkap/1000000, 2, ',', ',').' T</b>',
+		'terendah' => '<b>Jumlah Nilai Terendah & Terkontrak : '.number_format($total_terendah/1000000, 2, ',', ',').' T</b>',
 		'terkontrak' => '<b> Terkontrak : '.number_format($total_terkontrak/1000000, 2, ',', ',').' T</b>',
 	);
 
@@ -151,27 +96,27 @@
 			'categories' => $categories,
 		),
 		'series' => array(
-			// data rkap
+			// data Nilai Proyek
 			array(
-				'name' => 'RKAP',
+				'name' => 'Nilai Proyek',
 				'data' => $data_rkap,
 				'point' => '',
-				'color' => '#ed7d64',
-			),
+				'color' => '#8e8eb7',
+			),	
 			// data terendah
 			array(
-				'name' => 'Terendah',
+				'name' => 'Nilai Terendah & Terkontrak',
 				'data' => $data_terendah,
 				'point' => '',
-				'color' => '#64b8df',
+				'color' => '#eeaf4b',
 			),
 			// data terkontrak
-			array(
-				'name' => 'Terkontrak',
-				'data' => $data_terkontrak,
-				'point' => '',
-				'color' => '#8ecb60',
-			),
+			// array(
+			// 	'name' => 'Terkontrak',
+			// 	'data' => $data_terkontrak,
+			// 	'point' => '',
+			// 	'color' => '#8ecb60',
+			// ),
 		),
 		'total_highchart' => 'Total Diperoleh : '.number_format($total_sum_terendah_terkontrak, 2, ',', ','),
 		'legend_highchart' => $legend_highchart,
