@@ -5,7 +5,7 @@
 	else if(strtolower($jenis) == 'terendah' || strtolower($jenis) == 'terkontrak') $judul = 'Diperoleh';
 	else $judul = 'Diperoleh';
 ?>
-
+<!-- total diperoleh dan btn download -->
 
 <!-- table list detail proyek -->
 <table class="table-detail">
