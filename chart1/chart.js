@@ -143,7 +143,7 @@ function addEvent_onClick(data){
 		data.series[i].point = {
 			events: {
 				click: function(event){
-					get_detail_data(this.id);
+					get_detail_data(this.id, this.jenis);
 				}
 			}
 		}

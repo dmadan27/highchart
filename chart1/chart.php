@@ -3,66 +3,8 @@
 	$get_tahun = isset($_POST['tahun']) ? $_POST['tahun'] : false;
 	$get_bulan = isset($_POST['bulan']) ? $_POST['bulan'] : false;
 
-	// mapping anak perusahaan
-	$anak_perusahaan = array(
-		array(
-			'company' => '4547d242-0ed5-4d09-ac37-420e5e19a703',
-			'name' => 'Witon (Wika Beton)',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => 'c0b9186f-75d6-4865-b0f3-890d7db8fa2e',
-			'name' => 'Wikon',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => '514f7570-0c8f-4589-9368-69465c8b5ed2',
-			'name' => 'WR (Wika Realty)',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => '8d6255cb-1067-4ac9-a9bf-9c086363267',
-			'name' => 'WG (Wika Gedung)',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		// ganti
-		array(
-			'company' => '9c791f07-bf39-4186-a317-7965e547dde7',
-			'name' => 'Wijaya Karya',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => '73bf37c7-8bde-4678-92d7-1b9882bbd1a4',
-			'name' => 'Bitumen',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-		array(
-			'company' => 'cc7c5a60-2e2a-424e-852b-562bbf0a239d',
-			'name' => 'Serpan',
-			'rkap' => 0,
-			'terendah' => 0,
-			'terkontrak' => 0,
-			'sum_terendah_terkontrak' => 0,
-		),
-	);
+	// load list anak perusahaan
+	require_once '../assets/list_anak_perusahaan.php';
 
 	// get data wika
 	$get_data = file_get_contents("https://aarmindonesia.org/wikabpm/highchart/live%20Version/json/json_ALL.php?tahun=".$get_tahun."&company=yes");
@@ -116,6 +58,11 @@
 
 		// passing data id
 		$dataValue_rkap['id'] = $dataValue_terendah['id'] = $dataValue_terkontrak['id'] = $value['company'];
+
+		// passing data jenis
+		$dataValue_rkap['jenis'] = 'rkap';
+		$dataValue_terendah['jenis'] = 'terendah';
+		$dataValue_terkontrak['jenis'] = 'terkontrak';		
 
 		// passing data nilai
 		$dataValue_rkap['y'] = $value['rkap']/1000000;
@@ -173,7 +120,7 @@
 				'color' => '#8ecb60',
 			),
 		),
-		'total_highchart' => 'Total Diperoleh : '.number_format($total_sum_terendah_terkontrak, 2, ',', ','),
+		'total_highchart' => 'Total Diperoleh : '.number_format($total_sum_terendah_terkontrak, 2, ',', ',').' T',
 		'legend_highchart' => $legend_highchart,
 	);
 
