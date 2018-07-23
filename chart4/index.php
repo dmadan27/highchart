@@ -1,5 +1,5 @@
-<?php 
-	// Defined("BASE_PATH") or die("Dilarang Mengakses File Secara Langsung"); 
+<?php
+	// Defined("BASE_PATH") or die("Dilarang Mengakses File Secara Langsung");
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@
 	<body>
 		<!-- container -->
 		<div class="container">
-			
+
 			<!-- title -->
 			<div class="container-title">
 				<table border="0" style="width: 100%">
@@ -52,7 +52,7 @@
 
 				<!-- data total per anak perusahaan -->
 				<div id="legend-highchart" class="form-highchart" style="text-align: center;"></div>
-				
+
 			</div>
 
 			<!-- detail -->
@@ -72,8 +72,8 @@
 
 			<!-- js custom highchart -->
 			<script type="text/javascript" src="assets/js/init.js"></script>
-			<script type="text/javascript" src="chart1/chart.js"></script>
-			<script type="text/javascript" src="chart1/detail.js"></script>
+			<script type="text/javascript" src="chart4/chart.js"></script>
+			<script type="text/javascript" src="chart4/detail.js"></script>
 		<!--  -->
 	</body>
 </html>

@@ -13,7 +13,7 @@ $(document).ready(function(){
 		// reload highchart
 		get_data_chart(function(data){
 			generate_chart('body-highchart', data);
-		});		
+		});
 	});
 });
 
@@ -27,7 +27,7 @@ function get_data_chart(handleData){
 	};
 
 	$.ajax({
-		url: "chart1/chart.php",
+		url: "chart4/chart.php",
 		type: "POST",
 		dataType: "JSON",
 		data: data,
@@ -93,8 +93,8 @@ function generate_chart(container, data){
 					color:'#999',
 					allowOverlap: true,
 					style: {
-						fontFamily:'Arial, Helvetica, sans-serif', 
-						fontSize:12 
+						fontFamily:'Arial, Helvetica, sans-serif',
+						fontSize:12
 					},
 					formatter: function() {
 					    if(this.y > 0) return Highcharts.numberFormat(this.y, 3);
@@ -156,14 +156,12 @@ function addEvent_onClick(data){
 *
 */
 function setLegend(data){
-	var legend_rkap = '<img src="assets/image/image2/merah.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#ed7d64;">'+data.rkap+'</span></br>';
-	var legend_terendah = '<img src="assets/image/image2/biru.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#64b8df;">'+data.terendah+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-	var legend_terkontrak = '<img src="assets/image/image2/hijau.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#8ecb60;">'+data.terkontrak+'</span>';
+	var legend_jumlah_proyek = '<img src="assets/image/image2/merah.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+					'<span style="color:#8e8eb7;">'+data.jumlah_proyek+'</span></br>';
+	var legend_terendah_terkontrak = '<img src="assets/image/image2/biru.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+					'<span style="color:#eeaf4b;">'+data.terendah_terkontrak+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
 
-	$('#legend-highchart').html(legend_rkap+legend_terendah+legend_terkontrak);
+	$('#legend-highchart').html(legend_jumlah_proyek+legend_terendah_terkontrak);
 }
 
 /**
