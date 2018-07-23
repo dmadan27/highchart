@@ -3,67 +3,7 @@
 	$get_tahun = isset($_POST['tahun']) ? $_POST['tahun'] : false;
 	$get_bulan = isset($_POST['bulan']) ? $_POST['bulan'] : false;
 
-	// mapping anak perusahaan
-	// $anak_perusahaan = array(
-	// 	array(
-	// 		'company' => '4547d242-0ed5-4d09-ac37-420e5e19a703',
-	// 		'name' => 'Witon (Wika Beton)',
-	// 		'rkap' => 0,
-	// 		'terendah' => 0,
-	// 		'terkontrak' => 0,
-	// 		'sum_terendah_terkontrak' => 0,
-	// 	),
-	// 	array(
-	// 		'company' => 'c0b9186f-75d6-4865-b0f3-890d7db8fa2e',
-	// 		'name' => 'Wikon',
-	// 		'rkap' => 0,
-	// 		'terendah' => 0,
-	// 		'terkontrak' => 0,
-	// 		'sum_terendah_terkontrak' => 0,
-	// 	),
-	// 	array(
-	// 		'company' => '514f7570-0c8f-4589-9368-69465c8b5ed2',
-	// 		'name' => 'WR (Wika Realty)',
-	// 		'rkap' => 0,
-	// 		'terendah' => 0,
-	// 		'terkontrak' => 0,
-	// 		'sum_terendah_terkontrak' => 0,
-	// 	),
-	// 	array(
-	// 		'company' => '8d6255cb-1067-4ac9-a9bf-9c086363267',
-	// 		'name' => 'WG (Wika Gedung)',
-	// 		'rkap' => 0,
-	// 		'terendah' => 0,
-	// 		'terkontrak' => 0,
-	// 		'sum_terendah_terkontrak' => 0,
-	// 	),
-	// 	// ganti
-	// 	array(
-	// 		'company' => '9c791f07-bf39-4186-a317-7965e547dde7',
-	// 		'name' => 'Wijaya Karya',
-	// 		'rkap' => 0,
-	// 		'terendah' => 0,
-	// 		'terkontrak' => 0,
-	// 		'sum_terendah_terkontrak' => 0,
-	// 	),
-	// 	array(
-	// 		'company' => '73bf37c7-8bde-4678-92d7-1b9882bbd1a4',
-	// 		'name' => 'Bitumen',
-	// 		'rkap' => 0,
-	// 		'terendah' => 0,
-	// 		'terkontrak' => 0,
-	// 		'sum_terendah_terkontrak' => 0,
-	// 	),
-	// 	array(
-	// 		'company' => 'cc7c5a60-2e2a-424e-852b-562bbf0a239d',
-	// 		'name' => 'Serpan',
-	// 		'rkap' => 0,
-	// 		'terendah' => 0,
-	// 		'terkontrak' => 0,
-	// 		'sum_terendah_terkontrak' => 0,
-	// 	),
-	// );
-
+	// load list anak perusahaan
 	require_once '../assets/list_anak_perusahaan.php';
 
 	// get data wika
@@ -85,64 +25,63 @@
 
 		$company = $value['Company'];
 		$status = $value['Status'];
+		$rkap = $value['RKAP'];
 		$diperoleh = $value['Diperoleh'];
 
 		// jika bulan lebih kecil sama dengan get bulan
-		if($month <= $get_bulan){
+		if($value['Tactic'] && $month <= $get_bulan){
 			// pecah anak perusahaan untuk difilter
 			foreach($temp_anak_perusahaan as $key => $row){
 				// jika ada yg sesuai dgn anak perusahaan
 				if($company == $row['company']){
-					$anak_perusahaan[$key]['jumlah_proyek'] += 1;
-					if($status == 'Terendah_Terkontrak') $anak_perusahaan[$key]['terendah_terkontrak'] += $diperoleh;
+					$anak_perusahaan[$key]['jumlah_proyek']++;
+					if($status == 'Terendah' || $status == 'Terkontrak')
+						$anak_perusahaan[$key]['jumlah_terendah_terkontrak']++;
 				}
-				// sum terendah + terkontrak
-				$anak_perusahaan[$key]['sum_terendah_terkontrak'] = $anak_perusahaan[$key]['terendah'] + $anak_perusahaan[$key]['terkontrak'];
 			}
 		}
 	}
 
 	// inisialisasi var untuk data bar
-	$data_jummlah_proyek = $data_diperoleh = array();
-	$data_terendah_terkontrak = $categories = array();
+	$data_jumlah_proyek = $data_jumlah_nilai = array();
+	$categories = array();
 
 	// inisialisasi var untuk total_highchart dan data di legend
-	$total_sum_terendah_terkontrak = $total_jumlah_proyek = 0;
-	$total_terendah_terkontrak = 0;
+	$total_jumlah_penawaran = $total_jumlah_terendah_terkontrak = 0;
 
 	// pecah anak perusahaan untuk passing data
 	foreach ($anak_perusahaan as $key => $value) {
-		$dataValue_jumlah_proyek = $dataValue_terendah_terkontrak = array();
+		$dataValue_jumlah_proyek = $dataValue_jumlah_terendah_terkontrak = array();
+		$dataValue_categories = array();
 
 		// passing data id
-		$dataValue_jumlah_proyek['id'] = $dataValue_terendah_terkontrak['id'] = $value['company'];
+		$dataValue_jumlah_proyek['id'] = $dataValue_jumlah_terendah_terkontrak['id'] = $value['company'];
 
 		// passing data jenis
-		$dataValue_jumlah_proyek['jenis'] = 'jumlah_proyek';
-		$dataValue_terendah_terkontrak['jenis'] = 'terendah_terkontrak';
+		$dataValue_jumlah_proyek['jenis'] = 'Jumlah Proyek';
+		$dataValue_jumlah_terendah_terkontrak['jenis'] = 'Jumlah Terendah & Terendah';
 
 		// passing data nilai
-		$dataValue_jumlah_proyek['y'] = $value['jumlah_proyek']/1000000;
-		$dataValue_terendah_terkontrak['y'] = $value['terendah_terkontrak']/1000000;
+		$dataValue_jumlah_proyek['y'] = $value['jumlah_proyek'];
+		$dataValue_jumlah_terendah_terkontrak['y'] = $value['jumlah_terendah_terkontrak'];
 
 		// passing label
-		$categories[] = $value['name'].' | Diperoleh : '.$value['sum_terendah_terkontrak'].' T';
+		$dataValue_categories['name'] = 'CI='.number_format($value['ci_jumlah'],2,',',',').'%';
+		$dataValue_categories['categories'] = array($value['name']);
 
-		// passing data total-highchart
-		$total_sum_terendah_terkontrak += $value['sum_terendah_terkontrak'];
+		// hitung data total jumlah penawaran, terendah-terkontrak
+		$total_jumlah_penawaran += $value['jumlah_proyek'];
+		$total_jumlah_terendah_terkontrak += $value['jumlah_terendah_terkontrak'];
 
-		// hitung data total rkap, terendah dan terkontrak
-		$total_jumlah_proyek += $value['jumlah_proyek'];
-		$total_terendah_terkontrak += $value['terendah_terkontrak'];
-
-		$data_jummlah_proyek[] = $dataValue_jumlah_proyek;
-		$data_terendah_terkontrak[] = $dataValue_terendah_terkontrak;
+		$data_jumlah_proyek[] = $dataValue_jumlah_proyek;
+		$data_jumlah_nilai[] = $dataValue_jumlah_terendah_terkontrak;
+		$categories[] = $dataValue_categories;
 	}
 
 	// passing data total rkap, terendah dan terkontrak ke legend
 	$legend_highchart = array(
-		'jumlah_proyek' => '<b>Jumlah Proyek : '.number_format($total_jumlah_proyek/1000000, 2, ',', ',').' T</b>',
-		'terendah_terkontrak' => '<b> Terendah : '.number_format($total_terendah_terkontrak/1000000, 2, ',', ',').' T</b>',
+		'jumlah_penawaran' => '<b>Jumlah Penawaran : '.$total_jumlah_penawaran.'</b>',
+		'terendah_terkontrak' => '<b> Terendah & Terkontrak : '.$total_jumlah_terendah_terkontrak.'</b>',
 	);
 
 	// output yg akan dikirim ke highchart
@@ -151,22 +90,21 @@
 			'categories' => $categories,
 		),
 		'series' => array(
-			// data jumlah proyek
+			// data rkap
 			array(
 				'name' => 'Jumlah Proyek',
-				'data' => $data_jummlah_proyek,
+				'data' => $data_jumlah_proyek,
 				'point' => '',
 				'color' => '#8e8eb7',
 			),
 			// data terendah
 			array(
-				'name' => 'Terendah_Terkontrak',
-				'data' => $data_terendah_terkontrak,
+				'name' => 'Terendah & Terkontrak',
+				'data' => $data_jumlah_nilai,
 				'point' => '',
 				'color' => '#eeaf4b',
 			),
 		),
-		'total_highchart' => 'Total Diperoleh : '.number_format($total_sum_terendah_terkontrak, 2, ',', ','),
 		'legend_highchart' => $legend_highchart,
 	);
 

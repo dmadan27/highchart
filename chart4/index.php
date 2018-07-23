@@ -1,6 +1,4 @@
-<?php
-	// Defined("BASE_PATH") or die("Dilarang Mengakses File Secara Langsung");
-?>
+<?php ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -63,12 +61,13 @@
 
 		<!-- load js -->
 			<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="assets/js/blockui.min.js"></script>
 			<!-- js highchart -->
 			<script src="https://code.highcharts.com/highcharts.js"></script>
 			<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 			<script src="https://code.highcharts.com/modules/exporting.js"></script>
 			<!-- komentari Group.js jika tidak digunakan -->
-			<!-- <script src="js/Group.js"></script> -->
+			<script src="assets/js/group.js"></script>
 
 			<!-- js custom highchart -->
 			<script type="text/javascript" src="assets/js/init.js"></script>
