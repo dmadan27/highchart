@@ -54,6 +54,13 @@
   	-webkit-overflow-scrolling: touch;
 }
 
+#total-detail{
+    font-family: "Font Digital2";
+	font-size: 14px;
+	color: #5c5c57;
+    padding-left: 10px;
+}
+
 .table-detail {
     border-collapse: collapse;
     width: 100%;

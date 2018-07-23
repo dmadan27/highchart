@@ -4,8 +4,10 @@
 	if(strtolower($jenis) == 'rkap') $judul = 'RKAP';
 	else if(strtolower($jenis) == 'terendah' || strtolower($jenis) == 'terkontrak') $judul = 'Diperoleh';
 	else $judul = 'Diperoleh';
+
 ?>
 <!-- total diperoleh dan btn download -->
+<span id="total-detail" style="font-size:14px;color:#6483c3;padding:10px;float:right"></span>
 
 <!-- table list detail proyek -->
 <table class="table-detail">

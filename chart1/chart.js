@@ -38,9 +38,11 @@ function get_data_chart(handleData){
 		dataType: "JSON",
 		data: data,
 		beforeSend: function(){
+			$('.container').block({message: "Please Wait.."});
 		},
 		success: function(output){
 			console.log(output);
+			$('.container').unblock();
 			handleData(output);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
