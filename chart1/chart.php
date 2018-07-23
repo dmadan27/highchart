@@ -60,9 +60,9 @@
 		$dataValue_rkap['id'] = $dataValue_terendah['id'] = $dataValue_terkontrak['id'] = $value['company'];
 
 		// passing data jenis
-		$dataValue_rkap['jenis'] = 'rkap';
-		$dataValue_terendah['jenis'] = 'terendah';
-		$dataValue_terkontrak['jenis'] = 'terkontrak';		
+		$dataValue_rkap['jenis'] = 'RKAP';
+		$dataValue_terendah['jenis'] = 'Terendah';
+		$dataValue_terkontrak['jenis'] = 'Terkontrak';		
 
 		// passing data nilai
 		$dataValue_rkap['y'] = $value['rkap']/1000000;
