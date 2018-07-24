@@ -5,6 +5,15 @@
 	$get_tahun = isset($_POST['tahun']) ? $_POST['tahun'] : false;
 	$get_bulan = isset($_POST['bulan']) ? $_POST['bulan'] : false;
 
+	$get_download = isset($_GET['download']) ? $_GET['download'] : false;
+
+	if($get_download && $get_download == 'yes'){
+		$get_company = isset($_GET['company']) ? $_GET['company'] : false;
+		$get_jenis = isset($_GET['jenis']) ? $_GET['jenis'] : false;
+		$get_tahun = isset($_GET['tahun']) ? $_GET['tahun'] : false;
+		$get_bulan = isset($_GET['bulan']) ? $_GET['bulan'] : false;
+	}
+
 	// load list anak perusahaan
 	require_once '../assets/list_anak_perusahaan.php';
 
@@ -67,4 +76,46 @@
 		'total' => 'Total Diperoleh: '.number_format($total, 0, ',', '.'),
 	);
 
-	echo json_encode($output);
+	if(!$get_download) echo json_encode($output);
+	else if ($get_download && $get_download == 'yes') {// export excel
+
+		if(strtolower($get_jenis) == 'jumlah_proyek') $judul = 'Diperoleh';
+		else if(strtolower($get_jenis) == 'terendah' || strtolower($get_jenis) == 'terkontrak') $judul = 'Diperoleh';
+
+		// Fungsi header dengan mengirimkan raw data excel
+		header("Content-type: application/vnd-ms-excel");
+
+		// Mendefinisikan nama file ekspor "hasil-export.xls"
+		header("Content-Disposition: attachment; filename=hasil-export.xls");
+
+		?>
+		<table class="table-detail" border="1px solid black">
+			<thead>
+				<tr>
+					<th width="50%">Nama Proyek</th>
+					<th width="20%"><?= $judul; ?></th>
+					<th width="30%">Keterangan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+					foreach($output['data'] as $value){
+						echo '<tr>';
+						echo '<td>'.$value['title'].'</td>';
+						echo '<td>'.$value['nilai'].'</td>';
+						echo '<td>'.$value['keterangan'].'</td>';
+						echo '</tr>';
+					}
+				?>
+			</tbody>
+			<!-- <tfoot>
+				<tr>
+					<th color="black" colspan="3" line-height="bold">
+						<?= $output['total']; ?>
+					</th>
+				</tr>
+			</tfoot> -->
+		</table>
+	<?php
+	}
+?>
