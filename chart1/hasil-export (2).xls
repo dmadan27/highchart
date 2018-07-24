@@ -1,0 +1,252 @@
+
+    <table class="tbl-qa" border="1px solid black">
+		<thead>
+			<tr>			
+				<th class="table-header" width="60%">Nama Proyek</th>
+		                <th class="table-header" width="25%">RKAP</th>
+				<th class="table-header" width="15%">Keterangan</th>
+			</tr>
+		</thead>
+		<tbody>    
+		          		<tr class="table-row">
+           			<td>Dermaga CBL (Cikarang - Bekasi Laut)</td>
+           			<td>2.000.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Toll Harbour</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Aksesibilitas Lanjutan AP 2</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>BORR III</td>
+           			<td>1.200.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Loopline Seksi I (Lintas Timur)</td>
+           			<td>1.000.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>SPAM Jatiluhur</td>
+           			<td>2.000.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>LRT Tahap 2 (Velodrum - Manggarai)</td>
+           			<td>5.000.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Tol Serang Panimbang</td>
+           			<td>750.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>TPA Jombang</td>
+           			<td>320.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Jalur Lintas Selatan Batas Tulungagung - Batas Malang</td>
+           			<td>210.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Shortcut Bedugul</td>
+           			<td>228.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Bendungan Randu Gunting Jateng</td>
+           			<td>500.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Flyover Kopo Bandung</td>
+           			<td>350.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Pembangunan Bendungan Logung II</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Irigasi Sei Silau, (Deli - Serdang)</td>
+           			<td>109.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Pembangunan Bendungan Komering II / Tiga Dihaji Paket 4 Kab OKU Selatan</td>
+           			<td>0</td>
+           			<td>Terendah</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>SAS Coal Infrastructure Development Jambi (Haulling Road)</td>
+           			<td>485.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Gedebage 4</td>
+           			<td>300.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Irigasi Rentang Loan Jica</td>
+           			<td>150.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>FO Teluk Lamong (Pelindo 3)</td>
+           			<td>1.190.000</td>
+           			<td>Terkontrak</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>PLTA Asahan (Akses Road)</td>
+           			<td>450.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Dermaga Patimban, Cirebon</td>
+           			<td>960.000</td>
+           			<td>Terendah</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Cable Stayed Danau Toba Prapat</td>
+           			<td>294.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Tol Serpong - Balaraja</td>
+           			<td>400.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Bendungan Tugu Tahap 2</td>
+           			<td>500.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Proyek Pengembangan Pabrik Garam NTT</td>
+           			<td>800.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Perkerasan Dermaga Semen Tonasa Kalsel</td>
+           			<td>340.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Overlay Runway dan Taxiway Serta Rekonstruksi dan Perluasan Apron di Bandar Udara Franskaisiepo</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Bengkoang</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Bendungan Bringin Sila NTB</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Terminal Kijing Mempawah</td>
+           			<td>2.490.910</td>
+           			<td>Terkontrak</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Penanggulangan Longsor Kebon Kopi 4 Palu</td>
+           			<td>250.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Bendungan Pelosika </td>
+           			<td>500.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Balikpapan - Kademan - Kuaro</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Kereta Api Makasar</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Pembangunan Jembatan Tabalong</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>By Pass km 17 - Simpang Marabahan</td>
+           			<td>150.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Saluran Irigasi/Air Baku Kabupaten Kapuas</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Toll Pettarani Makasar</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Jembatan Alalak</td>
+           			<td>0</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>IPAL Makassar</td>
+           			<td>220.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Pengembangan Infrastruktur Permukiman Entikong - Sekayam, Sanggau Kalbar Lanjutan </td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Jembatan Antar Pulau dan Pembangkit NTT</td>
+           			<td>500.000</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Dermaga PLN</td>
+           			<td>200.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Dermaga Bagendang & Pangkalan Bun, Sampit</td>
+           			<td>200.000</td>
+           			<td>Terkontrak</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Pengolahan Sampah di Sulut</td>
+           			<td>400.000</td>
+           			<td>Pasar Potensial</td>
+         		</tr>
+		          		<tr class="table-row">
+           			<td>Infrastructure ITDC</td>
+           			<td>0</td>
+           			<td>Pasar Dini</td>
+         		</tr>
+		        	</tbody>
+<tfoot>
+<tr id="table-row">
+<th class="table-footer" color="black" colspan="3" line-height="bold">Total RKAP: 24.446.910</th>
+</tr>
+</tfoot>
+     </table>

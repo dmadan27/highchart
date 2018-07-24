@@ -20,7 +20,6 @@
 	$data = array();
 	$total = 0;
 
-	// pecah data wika untuk filter sesuai dengan mapping perusahaan
 	foreach ($data_wika as $value) {
 		$tempDate = $value['Create'];
 
@@ -35,21 +34,12 @@
 		$diperoleh = $value['Diperoleh'];
 
 		// jika bulan lebih kecil sama dengan get bulan
-		if($month <= $get_bulan){
+		if($value['Tactic'] && $month <= $get_bulan){
 			// pecah anak perusahaan untuk difilter
 			foreach($temp_anak_perusahaan as $key => $row){
 				// jika ada yg sesuai dgn anak perusahaan
-				if($get_company == $row['company']){
-					if($get_jenis == 'RKAP'){
-						$dataRow = array();
-						$dataRow['title'] = $proyek;
-						$dataRow['keterangan'] = $status;
-						$dataRow['nilai'] = number_format($rkap, 0, ',', '.');
-
-						$data[] = $dataRow;
-						$total += $rkap;
-					}
-					else if($get_jenis == 'Terendah' && $status == $get_jenis){
+				if($company == $row['company']){
+					if($get_jenis == 'jumlah_proyek'){
 						$dataRow = array();
 						$dataRow['title'] = $proyek;
 						$dataRow['keterangan'] = $status;
@@ -58,26 +48,23 @@
 						$data[] = $dataRow;
 						$total += $diperoleh;
 					}
-					else if($get_jenis == 'Terkontrak' && $status == $get_jenis){
+					else if($get_jenis == 'Terendah' && ($status == 'Terendah' || $status == 'Terkontrak')){
 						$dataRow = array();
 						$dataRow['title'] = $proyek;
 						$dataRow['keterangan'] = $status;
 						$dataRow['nilai'] = number_format($diperoleh, 0, ',', '.');
 
 						$data[] = $dataRow;
-						$total += $diperoleh;	
+						$total += $diperoleh;
 					}
-
 				}
-				// sum terendah + terkontrak
-				$anak_perusahaan[$key]['sum_terendah_terkontrak'] = $anak_perusahaan[$key]['terendah'] + $anak_perusahaan[$key]['terkontrak'];
 			}
 		}
 	}
 
 	$output = array(
 		'data' => $data,
-		'total' => ($get_jenis == 'RKAP') ? 'Total RKAP: '.number_format($total, 0, ',', '.') : 'Total Diperoleh: '.number_format($total, 0, ',', '.'),
+		'total' => 'Total Diperoleh: '.number_format($total, 0, ',', '.'),
 	);
 
 	echo json_encode($output);

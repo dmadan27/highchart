@@ -68,12 +68,12 @@
 			<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 			<script src="https://code.highcharts.com/modules/exporting.js"></script>
 			<!-- komentari Group.js jika tidak digunakan -->
-			<!-- <script src="js/Group.js"></script> -->
+			<script src="assets/js/group.js"></script>
 
 			<!-- js custom highchart -->
 			<script type="text/javascript" src="assets/js/init.js"></script>
-			<script type="text/javascript" src="chart1/chart.js"></script>
-			<script type="text/javascript" src="chart1/detail.js"></script>
+			<script type="text/javascript" src="chart5/chart.js"></script>
+			<script type="text/javascript" src="chart5/detail.js"></script>
 		<!--  -->
 	</body>
 </html>

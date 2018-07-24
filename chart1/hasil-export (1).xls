@@ -1,0 +1,12 @@
+		<table class="table-detail" border="1px solid black">
+			<thead>
+				<tr>
+					<th width="50%">Nama Proyek</th>
+					<th width="20%">Diperoleh</th>
+					<th width="30%">Keterangan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td>LRT Tahap 2 (Velodrum - Manggarai)</td><td>5.000.000</td><td>Pasar Dini</td></tr>			</tbody>
+		</table>
+	

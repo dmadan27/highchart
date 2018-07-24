@@ -58,8 +58,8 @@
 		$dataValue_jumlah_proyek['id'] = $dataValue_jumlah_terendah_terkontrak['id'] = $value['company'];
 
 		// passing data jenis
-		$dataValue_jumlah_proyek['jenis'] = 'Jumlah Proyek';
-		$dataValue_jumlah_terendah_terkontrak['jenis'] = 'Jumlah Terendah & Terendah';
+		$dataValue_jumlah_proyek['jenis'] = 'jumlah_proyek';
+		$dataValue_jumlah_terendah_terkontrak['jenis'] = 'Terendah';
 
 		// passing data nilai
 		$dataValue_jumlah_proyek['y'] = $value['jumlah_proyek'];
