@@ -1,4 +1,4 @@
-<?php 
+<?php
 	// inisialisasi get data tahun dan bulan
 	$get_tahun = isset($_POST['tahun']) ? $_POST['tahun'] : false;
 	$get_bulan = isset($_POST['bulan']) ? $_POST['bulan'] : false;
@@ -25,69 +25,64 @@
 
 		$company = $value['Company'];
 		$status = $value['Status'];
-		$nilaitactic = $value['Tactic'];
+		$rkap = $value['RKAP'];
 		$diperoleh = $value['Diperoleh'];
-		$ci_nilai = $value['CI_Nilai'];
-
+		$tactic = $value['Tactic'];
 
 		// jika bulan lebih kecil sama dengan get bulan
-		if($month <= $get_bulan){
+		if($value['Tactic'] && $month <= $get_bulan){
 			// pecah anak perusahaan untuk difilter
 			foreach($temp_anak_perusahaan as $key => $row){
 				// jika ada yg sesuai dgn anak perusahaan
 				if($company == $row['company']){
-					$anak_perusahaan[$key]['nilai_tactic'] += $nilaitactic;
-
-					if($status == 'Terendah' || $status == 'Terkontrak') $anak_perusahaan[$key]['diperoleh'] += $diperoleh;
-
+					$anak_perusahaan[$key]['nilai_tactic'] += $tactic;
+					if($status == 'Terendah' || $status == 'Terkontrak')
+						$anak_perusahaan[$key]['diperoleh'] += $diperoleh;
 				}
-				// CI_Nilai persentase = (terendah + terkontrak) / Jumlah Proyek * 100)
-				$anak_perusahaan[$key]['ci_nilai'] = $anak_perusahaan[$key]['nilai_tactic'] / $anak_perusahaan[$key]['diperoleh'] * 100;
 			}
 		}
 	}
 
 	// inisialisasi var untuk data bar
-	$data_rkap = $data_terendah = array();
-	$data_terkontrak = $categories = array();
-	
+	$data_jumlah_nilai_proyek = $data_jumlah_nilai = array();
+	$categories = array();
+
 	// inisialisasi var untuk total_highchart dan data di legend
-	$total_sum_terendah_terkontrak = $total_rkap = 0;
-	$total_terendah = $total_terkontrak = 0;
+	$total_jumlah_nilai_proyek = $total_jumlah_terendah_terkontrak = 0;
 
 	// pecah anak perusahaan untuk passing data
 	foreach ($anak_perusahaan as $key => $value) {
-		$dataValue_rkap = $dataValue_terendah = $dataValue_terkontrak = array();
+		$dataValue_jumlah_nilai_proyek = $dataValue_jumlah_terendah_terkontrak = array();
+		$dataValue_categories = array();
 
 		// passing data id
-		$dataValue_rkap['id'] = $dataValue_terendah['id'] = $dataValue_terkontrak['id'] = $value['company'];
+		$dataValue_jumlah_nilai_proyek['id'] = $dataValue_jumlah_terendah_terkontrak['id'] = $value['company'];
+
+		// passing data jenis
+		$dataValue_jumlah_nilai_proyek['jenis'] = 'nilai_proyek';
+		$dataValue_jumlah_terendah_terkontrak['jenis'] = 'Terendah';
 
 		// passing data nilai
-		$dataValue_rkap['y'] = $value['rkap']/1000000;
-		$dataValue_terendah['y'] = $value['terendah']/1000000;
-		$dataValue_terkontrak['y'] = $value['terkontrak']/1000000;
-		
+		$dataValue_jumlah_nilai_proyek['y'] = $value['nilai_proyek'];
+		$dataValue_jumlah_terendah_terkontrak['y'] = $value['jumlah_terendah_terkontrak'];
+
 		// passing label
-		$categories[] = $value['name'].' | CI = '.$value['sum_terendah_terkontrak'].' %';
+		$dataValue_categories['name'] = 'CI='.number_format($value['ci_jumlah'],2,',',',').'%';
+		$dataValue_categories['categories'] = array($value['name']);
 
-		// passing data total-highchart
-		$total_sum_terendah_terkontrak += $value['sum_terendah_terkontrak']; 
-		
-		// hitung data total rkap, terendah dan terkontrak
-		$total_rkap += $value['rkap'];
-		$total_terendah += $value['terendah'];
-		$total_terkontrak += $value['terkontrak'];
+		// hitung data total jumlah nilai proyek, terendah-terkontrak
+		$total_jumlah_nilai_proyek += $value['nilai_proyek'];
+		$total_jumlah_terendah_terkontrak += $value['jumlah_terendah_terkontrak'];
 
-		$data_rkap[] = $dataValue_rkap;
-		$data_terendah[] = $dataValue_terendah;
-		$data_terkontrak[] = $dataValue_terkontrak;
+		$data_jumlah_nilai_proyek[] = $dataValue_jumlah_nilai_proyek;
+		$data_jumlah_nilai[] = $dataValue_jumlah_terendah_terkontrak;
+		$categories[] = $dataValue_categories;
 	}
 
 	// passing data total rkap, terendah dan terkontrak ke legend
 	$legend_highchart = array(
-		'rkap' => '<b>Jumlah Nilai Proyek : '.number_format($total_rkap/1000000, 2, ',', ',').' T</b>',
-		'terendah' => '<b>Jumlah Nilai Terendah & Terkontrak : '.number_format($total_terendah/1000000, 2, ',', ',').' T</b>',
-		'terkontrak' => '<b> Terkontrak : '.number_format($total_terkontrak/1000000, 2, ',', ',').' T</b>',
+		'jumlah_nilai_proyek' => '<b>Jumlah Nilai Proyek : '.$total_jumlah_nilai_proyek.'</b>',
+		'terendah_terkontrak' => '<b> Terendah & Terkontrak : '.$total_jumlah_terendah_terkontrak.'</b>',
 	);
 
 	// output yg akan dikirim ke highchart
@@ -96,29 +91,21 @@
 			'categories' => $categories,
 		),
 		'series' => array(
-			// data Nilai Proyek
+			// data rkap
 			array(
-				'name' => 'Nilai Proyek',
-				'data' => $data_rkap,
+				'name' => 'Jumlah Nilai Proyek',
+				'data' => $data_jumlah_nilai_proyek,
 				'point' => '',
 				'color' => '#8e8eb7',
-			),	
+			),
 			// data terendah
 			array(
-				'name' => 'Nilai Terendah & Terkontrak',
-				'data' => $data_terendah,
+				'name' => 'Terendah & Terkontrak',
+				'data' => $data_jumlah_nilai,
 				'point' => '',
 				'color' => '#eeaf4b',
 			),
-			// data terkontrak
-			// array(
-			// 	'name' => 'Terkontrak',
-			// 	'data' => $data_terkontrak,
-			// 	'point' => '',
-			// 	'color' => '#8ecb60',
-			// ),
 		),
-		'total_highchart' => 'Total Diperoleh : '.number_format($total_sum_terendah_terkontrak, 2, ',', ','),
 		'legend_highchart' => $legend_highchart,
 	);
 

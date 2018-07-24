@@ -1,6 +1,4 @@
-<?php 
-	// Defined("BASE_PATH") or die("Dilarang Mengakses File Secara Langsung"); 
-?>
+<?php ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,7 +17,7 @@
 	<body>
 		<!-- container -->
 		<div class="container">
-			
+
 			<!-- title -->
 			<div class="container-title">
 				<table border="0" style="width: 100%">
@@ -52,7 +50,7 @@
 
 				<!-- data total per anak perusahaan -->
 				<div id="legend-highchart" class="form-highchart" style="text-align: center;"></div>
-				
+
 			</div>
 
 			<!-- detail -->
@@ -63,6 +61,7 @@
 
 		<!-- load js -->
 			<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="assets/js/blockui.min.js"></script>
 			<!-- js highchart -->
 			<script src="https://code.highcharts.com/highcharts.js"></script>
 			<script src="https://code.highcharts.com/highcharts-3d.js"></script>
@@ -72,8 +71,8 @@
 
 			<!-- js custom highchart -->
 			<script type="text/javascript" src="assets/js/init.js"></script>
-			<script type="text/javascript" src="chart5/chart.js"></script>
-			<script type="text/javascript" src="chart5/detail.js"></script>
+			<script type="text/javascript" src="Chart5/chart.js"></script>
+			<script type="text/javascript" src="Chart5/detail.js"></script>
 		<!--  -->
 	</body>
 </html>

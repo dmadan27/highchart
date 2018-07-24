@@ -79,7 +79,7 @@
 	if(!$get_download) echo json_encode($output);
 	else if ($get_download && $get_download == 'yes') {// export excel
 
-		if(strtolower($get_jenis) == 'jumlah_proyek') $judul = 'Diperoleh';
+		if(strtolower($get_jenis) == 'nilai_proyek') $judul = 'Diperoleh';
 		else if(strtolower($get_jenis) == 'terendah' || strtolower($get_jenis) == 'terkontrak') $judul = 'Diperoleh';
 
 		// Fungsi header dengan mengirimkan raw data excel
@@ -92,7 +92,7 @@
 		<table class="table-detail" border="1px solid black">
 			<thead>
 				<tr>
-					<th width="50%">Nama Proyek</th>
+					<th width="50%">Nilai Proyek</th>
 					<th width="20%"><?= $judul; ?></th>
 					<th width="30%">Keterangan</th>
 				</tr>
