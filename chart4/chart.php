@@ -54,15 +54,14 @@
 		$dataValue_jumlah_proyek = $dataValue_jumlah_terendah_terkontrak = array();
 		$dataValue_categories = array();
 
-		// passing data id
-		$dataValue_jumlah_proyek['id'] = $dataValue_jumlah_terendah_terkontrak['id'] = $value['company'];
-
-		// passing data jenis
+		// passing data jumlah proyek
+		$dataValue_jumlah_proyek['id'] = $value['company'];
 		$dataValue_jumlah_proyek['jenis'] = 'jumlah_proyek';
-		$dataValue_jumlah_terendah_terkontrak['jenis'] = 'Terendah';
-
-		// passing data nilai
 		$dataValue_jumlah_proyek['y'] = $value['jumlah_proyek'];
+
+		// passing data jumlah terendah terkontrak
+		$dataValue_jumlah_terendah_terkontrak['id'] = $value['company'];
+		$dataValue_jumlah_terendah_terkontrak['jenis'] = 'Terendah';
 		$dataValue_jumlah_terendah_terkontrak['y'] = $value['jumlah_terendah_terkontrak'];
 
 		// passing label

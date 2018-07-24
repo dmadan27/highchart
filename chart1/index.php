@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Wika</title>
+		<title>Wika - OK Terendah dan Terkontrak per Anak Perusahaan (Dalam Trilyun)</title>
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@
 				<table border="0" style="width: 100%">
 					<tr>
 						<!-- judul hightchart -->
-						<td style="width: 90%; color: #FFF;"><span id="title_highchart">&nbsp;&nbsp;Title Highchart</span></td>
+						<td style="width: 90%; color: #FFF;"><span id="title_highchart">&nbsp;&nbsp;OK Terendah dan Terkontrak per Anak Perusahaan (Dalam Trilyun)</span></td>
 						<!-- button highchart -->
 						<td style="width: 10%; color:#FFF;"><span id="btn_highchart" style="cursor: pointer;"><i class="fa fa-bar-chart-o"></i></span></td>
 					</tr>

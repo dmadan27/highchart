@@ -24,6 +24,7 @@
 		if(!file_exists($filename)) 
 			die('Terjadi Kesalahan Sistem');
 		else{
+			$get_company = isset($_GET['company']) ? $_GET['company'] : false;
 			// require file layout
 			require_once $filename;
 		} 

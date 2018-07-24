@@ -56,19 +56,21 @@
 	foreach ($anak_perusahaan as $key => $value) {
 		$dataValue_rkap = $dataValue_terendah = $dataValue_terkontrak = array();
 
-		// passing data id
-		$dataValue_rkap['id'] = $dataValue_terendah['id'] = $dataValue_terkontrak['id'] = $value['company'];
-
-		// passing data jenis
+		// passing data rkap
+		$dataValue_rkap['id'] = $value['company'];
 		$dataValue_rkap['jenis'] = 'RKAP';
-		$dataValue_terendah['jenis'] = 'Terendah';
-		$dataValue_terkontrak['jenis'] = 'Terkontrak';		
-
-		// passing data nilai
 		$dataValue_rkap['y'] = $value['rkap']/1000000;
+
+		// passing data terendah 
+		$dataValue_terendah['id'] = $value['company'];
+		$dataValue_terendah['jenis'] = 'Terendah';
 		$dataValue_terendah['y'] = $value['terendah']/1000000;
+
+		// passing data terkontrak
+		$dataValue_terkontrak['id'] = $value['company'];
+		$dataValue_terkontrak['jenis'] = 'Terkontrak';
 		$dataValue_terkontrak['y'] = $value['terkontrak']/1000000;
-		
+				
 		// passing label
 		$categories[] = $value['name'].' | Diperoleh : '.$value['sum_terendah_terkontrak'].' T';
 

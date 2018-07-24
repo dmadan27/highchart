@@ -9,7 +9,13 @@ $(document).ready(function(){
 	});
 
 	// onChange tahun dan bulan
-	$('#tahun #bulan').on('change', function(){
+	$('#tahun').on('change', function(){
+		// reload highchart
+		get_data_chart(function(data){
+			generate_chart('body-highchart', data);
+		});		
+	});
+	$('#bulan').on('change', function(){
 		// reload highchart
 		get_data_chart(function(data){
 			generate_chart('body-highchart', data);
@@ -24,17 +30,20 @@ function get_data_chart(handleData){
 	var data = {
 		'tahun': $('#tahun').val().trim(),
 		'bulan': $('#bulan').val().trim(),
+		'company': $('#company').val().trim(),
 	};
 
 	$.ajax({
-		url: "chart1/chart.php",
+		url: "chart2/chart.php",
 		type: "POST",
 		dataType: "JSON",
 		data: data,
 		beforeSend: function(){
+			$('.container').block({message: "Please Wait.."});
 		},
 		success: function(output){
 			console.log(output);
+			$('.container').unblock();
 			handleData(output);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
@@ -56,100 +65,200 @@ function generate_chart(container, data){
 		}
 	});
 
-	// add event onclick pada tiap bar
-	data = addEvent_onClick(data);
+	// // set total-highchart
+	// $('#total-highchart').html('<b>'+data.total_highchart+'</b>');
 
-	// set total-highchart
-	$('#total-highchart').html('<b>'+data.total_highchart+'</b>');
+	// // set legend-highchart
+	// setLegend(data.legend_highchart);
 
-	// set legend-highchart
-	setLegend(data.legend_highchart);
+	// console.log(item);
 
 	// generate chart
 	var myChart = Highcharts.chart(container, {
 		chart: {
-			type: 'column',
+			type: 'pie',
 			// chart 3d
 			options3d: {
 				enabled: true,
-	            alpha: 10,
+	            alpha: 15,
 	            beta: 0,
-	            depth: 75,
 			}
 		},
 		title: {
-			text: ''
+			text: data.text,
+			margin: 0,
+			y: 0,
+			x: 0,
+			align: 'center',
+			verticalAlign: 'middle',
+			style: {
+				color: '#4572A7',
+				fontSize: '15px'
+			}
+		},
+		tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 		},
 		subtitle: {
 			text: ''
 		},
 		plotOptions: {
-			column: {
-				allowPointSelect: false,
+			pie: {
 				cursor: 'pointer',
-				depth: 35,
-			 	dataLabels: {
-					enabled: true,
-					color:'#999',
-					allowOverlap: true,
-					style: {
-						fontFamily:'Arial, Helvetica, sans-serif', 
-						fontSize:12 
-					},
-					formatter: function() {
-					    if(this.y > 0) return Highcharts.numberFormat(this.y, 3);
-					    else return '';
-				 	}
+				innerSize: 120,
+				depth: 25,
+				dataLabels: {
+					distance: 1
 				}
 			}
 		},
 		credits: {
 			enabled: false
 		},
-		// label xAxis chart
-		xAxis: {
-			categories: data.xAxis.categories,
-            labels: {
-            	formatter: function(){
-            		var value = this.value.split(' | ');
-            		return value[0]+'<br/>'+value[1];
-            	}
-            }
-		},
-		// label yAxis chart
-		yAxis: {
-			title: {
-				text: null
-			},
-			labels: {
-				formatter: function(){
-            		return(this.value)+" T"
-            	}
-			},
-		},
-		legend: {
+		exporting: {
 			enabled: false
 		},
-		series: data.series
+		series: [{
+				type: 'pie',
+				name: 'Persentase',
+				data: data.data,
+				point: {
+					events:{
+						click: function(event){
+							get_detail_data(this.id, this.jenis);
+						}
+					}
+				}
+			}
+		],
+		responsive: {
+			rules: [{
+					condition: {
+						maxWidth: 320
+					},
+					chartOptions: {
+						plotOptions: {
+							pie: {
+								cursor: 'pointer',
+								innerSize: 120,
+								depth: 25,
+								dataLabels: false
+							}
+						}
+					}
+				}
+			]
+		}		
 	});
 }
 
 /**
 *
 */
-function addEvent_onClick(data){
-	// add event on click pada bar
-	$.each(data.series, function(i, item){
-		data.series[i].point = {
-			events: {
-				click: function(event){
-					get_detail_data(this.id);
-				}
-			}
+function generate_chart_dinamis(container, data){
+	// set option highchart
+	Highcharts.setOptions({
+		lang: {
+    		decimalPoint: ',',
+        	thousandsSep: ' '
 		}
 	});
 
-	return data;
+	// // set total-highchart
+	// $('#total-highchart').html('<b>'+data.total_highchart+'</b>');
+
+	// // set legend-highchart
+	// setLegend(data.legend_highchart);
+
+	// lakukan perulangan
+	$.each(data.data, function(i, item){
+		var id_container = 'container'+(i+1);
+		var div = '<div class="container-donat" id="'+id_container+'"></div>';
+		var text = data.text[i];
+
+		// append div container
+		$('#body-highchart').append(div);
+
+		// console.log(item);
+
+		// generate chart
+		var myChart = Highcharts.chart(id_container, {
+			chart: {
+				type: 'pie',
+				// chart 3d
+				options3d: {
+					enabled: true,
+		            alpha: 15,
+		            beta: 0,
+				}
+			},
+			title: {
+				text: text,
+				margin: 0,
+				y: 0,
+				x: 0,
+				align: 'center',
+				verticalAlign: 'middle',
+				style: {
+					color: '#4572A7',
+					fontSize: '15px'
+				}
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			subtitle: {
+				text: ''
+			},
+			plotOptions: {
+				pie: {
+					cursor: 'pointer',
+					innerSize: 120,
+					depth: 25,
+					dataLabels: {
+						distance: 1
+					}
+				}
+			},
+			credits: {
+				enabled: false
+			},
+			exporting: {
+				enabled: false
+			},
+			series: [{
+					type: 'pie',
+					name: 'Persentase',
+					data: item,
+					point: {
+						events:{
+							click: function(event){
+								get_detail_data(this.id, this.jenis);
+							}
+						}
+					}
+				}
+			],
+			responsive: {
+				rules: [{
+						condition: {
+							maxWidth: 320
+						},
+						chartOptions: {
+							plotOptions: {
+								pie: {
+									cursor: 'pointer',
+									innerSize: 120,
+									depth: 25,
+									dataLabels: false
+								}
+							}
+						}
+					}
+				]
+			}		
+		});
+	});
 }
 
 /**

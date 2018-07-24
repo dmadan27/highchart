@@ -85,5 +85,52 @@
 }
 
 .table-detail tr:nth-child(even){
-	background-color: #f7f7f7
+	background-color: #f7f7f7;
+}
+
+/* style untuk pie donat */
+
+/* span data donat */
+.data-donat{
+	color: #999;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+/* container chart donat */
+.container-donat{
+	height: 250px;
+	width: 50%;
+	float: left;
+	margin: auto;
+}
+
+.bawah{
+	margin-top: 250px;
+}
+
+@media only screen and (max-width: 768px){
+	.container-donat{
+		height: 250px;
+		width: 100%;
+		float: left;
+		margin: auto;
+	}
+
+	.bawah{
+		margin-top: 0px;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.container-donat{
+		height: 250px;
+		width: 100%;
+		float: left;
+		margin: auto;
+	}
+
+	.bawah{
+		display:none;
+	}
 }
