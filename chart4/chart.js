@@ -110,12 +110,12 @@ function generate_chart(container, data){
 		// label xAxis chart
 		xAxis: {
 			categories: data.xAxis.categories,
-      labels: {
+      		labels: {
 				style: {
-              fontSize:'15px',
-              fontFamily:'Arial, Helvetica, sans-serif'
-        }
-      }
+              		fontSize:'15px',
+              		fontFamily:'Arial, Helvetica, sans-serif'
+        		}
+     	 	}
 		},
 		// label yAxis chart
 		yAxis: {

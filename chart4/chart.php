@@ -38,6 +38,11 @@
 					if($status == 'Terendah' || $status == 'Terkontrak')
 						$anak_perusahaan[$key]['jumlah_terendah_terkontrak']++;
 				}
+
+				if($anak_perusahaan[$key]['jumlah_terendah_terkontrak'] > 0){
+					$anak_perusahaan[$key]['ci_jumlah'] = $anak_perusahaan[$key]['jumlah_terendah_terkontrak']/$anak_perusahaan[$key]['jumlah_proyek']*100;
+				}
+				
 			}
 		}
 	}

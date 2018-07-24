@@ -41,7 +41,7 @@ function get_data_chart(handleData){
 			$('.container').block({message: "Please Wait.."});
 		},
 		success: function(output){
-			console.log(output.xAxis.categories);
+			console.log(output);
 			$('.container').unblock();
 			handleData(output);
 		},
@@ -98,7 +98,7 @@ function generate_chart(container, data){
 						fontSize:20
 					},
 					formatter: function() {
-					    if(this.y > 0) return Highcharts.numberFormat(this.y, 0);
+					    if(this.y > 0) return Highcharts.numberFormat(this.y, 2);
 					    else return '';
 				 	}
 				}
@@ -110,18 +110,23 @@ function generate_chart(container, data){
 		// label xAxis chart
 		xAxis: {
 			categories: data.xAxis.categories,
-      labels: {
+      		labels: {
 				style: {
-              fontSize:'15px',
-              fontFamily:'Arial, Helvetica, sans-serif'
-        }
-      }
+              		fontSize:'15px',
+              		fontFamily:'Arial, Helvetica, sans-serif'
+        		}
+      		}
 		},
 		// label yAxis chart
 		yAxis: {
 			title: {
 				text: null
 			},
+			labels: {
+				formatter: function(){
+					return (this.value/1)+" T"
+				}
+			}
 		},
 		legend: {
 			enabled: false
@@ -152,12 +157,12 @@ function addEvent_onClick(data){
 *
 */
 function setLegend(data){
-	var legend_penawaran = '<img src="assets/image/image2/ungu1.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+	var legend_nilai_proyek = '<img src="assets/image/image2/ungu1.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
 					'<span style="color:#8e8eb7;">'+data.jumlah_nilai_proyek+'</span></br>';
 	var legend_terendah_terkontrak = '<img src="assets/image/image2/orange1.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
 					'<span style="color:#eeaf4b;">'+data.terendah_terkontrak+'</span>';
 
-	$('#legend-highchart').html(legend_penawaran+legend_terendah_terkontrak);
+	$('#legend-highchart').html(legend_nilai_proyek+legend_terendah_terkontrak);
 }
 
 /**

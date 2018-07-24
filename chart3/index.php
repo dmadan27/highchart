@@ -1,10 +1,8 @@
-<?php 
-	// Defined("BASE_PATH") or die("Dilarang Mengakses File Secara Langsung"); 
-?>
+<?php ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Wika</title>
+		<title>Wika - OK Terendah dan Terkontrak per Sumber Dana (Dalam Trilyun)</title>
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +23,7 @@
 				<table border="0" style="width: 100%">
 					<tr>
 						<!-- judul hightchart -->
-						<td style="width: 90%; color: #FFF;"><span id="title_highchart">&nbsp;&nbsp;Title Highchart</span></td>
+						<td style="width: 90%; color: #FFF;"><span id="title_highchart">&nbsp;&nbsp;OK Terendah dan Terkontrak per Sumber Dana (Dalam Trilyun)</span></td>
 						<!-- button highchart -->
 						<td style="width: 10%; color:#FFF;"><span id="btn_highchart" style="cursor: pointer;"><i class="fa fa-bar-chart-o"></i></span></td>
 					</tr>
@@ -63,12 +61,13 @@
 
 		<!-- load js -->
 			<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="assets/js/blockui.min.js"></script>
 			<!-- js highchart -->
 			<script src="https://code.highcharts.com/highcharts.js"></script>
 			<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 			<script src="https://code.highcharts.com/modules/exporting.js"></script>
 			<!-- komentari Group.js jika tidak digunakan -->
-			<!-- <script src="js/Group.js"></script> -->
+			<script src="assets/js/group.js"></script>
 
 			<!-- js custom highchart -->
 			<script type="text/javascript" src="assets/js/init.js"></script>
