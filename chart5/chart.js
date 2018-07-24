@@ -9,11 +9,17 @@ $(document).ready(function(){
 	});
 
 	// onChange tahun dan bulan
-	$('#tahun #bulan').on('change', function(){
+	$('#tahun').on('change', function(){
 		// reload highchart
 		get_data_chart(function(data){
 			generate_chart('body-highchart', data);
-		});		
+		});
+	});
+	$('#bulan').on('change', function(){
+		// reload highchart
+		get_data_chart(function(data){
+			generate_chart('body-highchart', data);
+		});
 	});
 });
 
@@ -27,14 +33,16 @@ function get_data_chart(handleData){
 	};
 
 	$.ajax({
-		url: "chart1/chart.php",
+		url: "chart5/chart.php",
 		type: "POST",
 		dataType: "JSON",
 		data: data,
 		beforeSend: function(){
+			$('.container').block({message: "Please Wait.."});
 		},
 		success: function(output){
-			console.log(output);
+			console.log(output.xAxis.categories);
+			$('.container').unblock();
 			handleData(output);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
@@ -59,9 +67,6 @@ function generate_chart(container, data){
 	// add event onclick pada tiap bar
 	data = addEvent_onClick(data);
 
-	// set total-highchart
-	$('#total-highchart').html('<b>'+data.total_highchart+'</b>');
-
 	// set legend-highchart
 	setLegend(data.legend_highchart);
 
@@ -72,9 +77,6 @@ function generate_chart(container, data){
 			// chart 3d
 			options3d: {
 				enabled: true,
-	            alpha: 10,
-	            beta: 0,
-	            depth: 75,
 			}
 		},
 		title: {
@@ -91,13 +93,12 @@ function generate_chart(container, data){
 			 	dataLabels: {
 					enabled: true,
 					color:'#999',
-					allowOverlap: true,
 					style: {
-						fontFamily:'Arial, Helvetica, sans-serif', 
-						fontSize:12 
+						fontFamily:'Arial, Helvetica, sans-serif',
+						fontSize:20
 					},
 					formatter: function() {
-					    if(this.y > 0) return Highcharts.numberFormat(this.y, 3);
+					    if(this.y > 0) return Highcharts.numberFormat(this.y, 0);
 					    else return '';
 				 	}
 				}
@@ -109,22 +110,17 @@ function generate_chart(container, data){
 		// label xAxis chart
 		xAxis: {
 			categories: data.xAxis.categories,
-            labels: {
-            	formatter: function(){
-            		var value = this.value.split(' | ');
-            		return value[0]+'<br/>'+value[1];
-            	}
-            }
+      labels: {
+				style: {
+              fontSize:'15px',
+              fontFamily:'Arial, Helvetica, sans-serif'
+        }
+      }
 		},
 		// label yAxis chart
 		yAxis: {
 			title: {
 				text: null
-			},
-			labels: {
-				formatter: function(){
-            		return(this.value)+" T"
-            	}
 			},
 		},
 		legend: {
@@ -143,7 +139,7 @@ function addEvent_onClick(data){
 		data.series[i].point = {
 			events: {
 				click: function(event){
-					get_detail_data(this.id);
+					get_detail_data(this.id, this.jenis);
 				}
 			}
 		}
@@ -156,14 +152,12 @@ function addEvent_onClick(data){
 *
 */
 function setLegend(data){
-	var legend_rkap = '<img src="assets/image/image2/merah.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#ed7d64;">'+data.rkap+'</span></br>';
-	var legend_terendah = '<img src="assets/image/image2/biru.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#64b8df;">'+data.terendah+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-	var legend_terkontrak = '<img src="assets/image/image2/hijau.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#8ecb60;">'+data.terkontrak+'</span>';
+	var legend_penawaran = '<img src="assets/image/image2/ungu1.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+					'<span style="color:#8e8eb7;">'+data.jumlah_nilai_proyek+'</span></br>';
+	var legend_terendah_terkontrak = '<img src="assets/image/image2/orange1.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+					'<span style="color:#eeaf4b;">'+data.terendah_terkontrak+'</span>';
 
-	$('#legend-highchart').html(legend_rkap+legend_terendah+legend_terkontrak);
+	$('#legend-highchart').html(legend_penawaran+legend_terendah_terkontrak);
 }
 
 /**
