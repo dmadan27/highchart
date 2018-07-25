@@ -12,7 +12,7 @@ function get_detail_data(id, jenis){
 	};
 
 	$.ajax({
-		url: "Chart5/detail.php",
+		url: "chart5/detail.php",
 		type: "POST",
 		dataType: "JSON",
 		data: data,
@@ -28,13 +28,13 @@ function get_detail_data(id, jenis){
 
 			// show detail dan load table
 			$('.container-detail').show();
-			$('.container-detail').load('Chart5/table.php?jenis='+jenis, function(){
+			$('.container-detail').load('chart5/table.php?jenis='+jenis, function(){
 
 				var url_download = 'download=yes&company='+data.company+'&jenis='+
 									data.jenis+'&tahun='+data.tahun+'&bulan='+data.bulan;
 				// set total
 				$('#total-detail').append(
-					"<a href='Chart5/detail.php?"+url_download+"'><i class='fa fa-download' style='padding-left:30px; padding-right=10px; font-size:20px;'></i></a>"
+					"<a href='chart5/detail.php?"+url_download+"'><i class='fa fa-download' style='padding-left:30px; padding-right=10px; font-size:20px;'></i></a>"
 				);
 				generate_table_detail(output);
 			});
