@@ -1,10 +1,10 @@
 @font-face {
 	font-family: "Font Digital";
-	src: url('../font/BpmonlineOpenSans-Light.woff');
+	src: url('../../../../font/BpmonlineOpenSans-Light.woff');
 }
 @font-face {
 	font-family: "Font Digital2";
-	src: url('../font/BpmonlineOpenSans.woff');
+	src: url('../../../../font/BpmonlineOpenSans.woff');
 }
 
 .container{
