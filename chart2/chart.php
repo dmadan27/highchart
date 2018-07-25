@@ -73,12 +73,17 @@
 
 	$data = array($dataValue_jo, $dataValue_non_jo);
 
+	$legend_highchart = array(
+		'jo' => '<b>JO : '.number_format($persentase_jo, 2, ',', ',').'%</b>',
+		'non_jo' => '<b>Non JO : '.number_format($persentase_non_jo, 2, ',', ',').'%</b>' 
+	);
+
 	// output yg akan dikirim ke highchart
 	$output = array(
-		'total_diperoleh' => $total_jo_non_jo,
+		'total_diperoleh' => '<b>Total Diperoleh : '.number_format($total_jo_non_jo/1000000, 2, ',', ',').' T</b>',
 		'text' => $text,
 		'data' => $data,
-		'legend_highchart' => '',
+		'legend_highchart' => $legend_highchart,
 		// 'anak_perusahaan' => $anak_perusahaan,
 	);
 

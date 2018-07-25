@@ -9,7 +9,13 @@ $(document).ready(function(){
 	});
 
 	// onChange tahun dan bulan
-	$('#tahun #bulan').on('change', function(){
+	$('#tahun').on('change', function(){
+		// reload highchart
+		get_data_chart(function(data){
+			generate_chart('body-highchart', data);
+		});		
+	});
+	$('#bulan').on('change', function(){
 		// reload highchart
 		get_data_chart(function(data){
 			generate_chart('body-highchart', data);
@@ -32,9 +38,11 @@ function get_data_chart(handleData){
 		dataType: "JSON",
 		data: data,
 		beforeSend: function(){
+			$('.container').block({message: "Please Wait.."});
 		},
 		success: function(output){
 			console.log(output);
+			$('.container').unblock();
 			handleData(output);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
@@ -143,7 +151,7 @@ function addEvent_onClick(data){
 		data.series[i].point = {
 			events: {
 				click: function(event){
-					get_detail_data(this.id);
+					get_detail_data(this.id, this.jenis);
 				}
 			}
 		}

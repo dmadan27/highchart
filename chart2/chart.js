@@ -65,11 +65,11 @@ function generate_chart(container, data){
 		}
 	});
 
-	// // set total-highchart
-	// $('#total-highchart').html('<b>'+data.total_highchart+'</b>');
+	// set total-highchart
+	$('#total-highchart').html('<b>'+data.total_diperoleh+'</b>');
 
-	// // set legend-highchart
-	// setLegend(data.legend_highchart);
+	// set legend-highchart
+	setLegend(data.legend_highchart);
 
 	// console.log(item);
 
@@ -265,14 +265,12 @@ function generate_chart_dinamis(container, data){
 *
 */
 function setLegend(data){
-	var legend_rkap = '<img src="assets/image/image2/merah.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#ed7d64;">'+data.rkap+'</span></br>';
-	var legend_terendah = '<img src="assets/image/image2/biru.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#64b8df;">'+data.terendah+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-	var legend_terkontrak = '<img src="assets/image/image2/hijau.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#8ecb60;">'+data.terkontrak+'</span>';
+	var legend_non_jo = '<img src="assets/image/image2/biru.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+					'<span style="color:#64b8df;">'+data.non_jo+'</span></br>';
+	var legend_jo = '<img src="assets/image/image2/hijau.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
+					'<span style="color:#8ecb60;">'+data.jo+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
 
-	$('#legend-highchart').html(legend_rkap+legend_terendah+legend_terkontrak);
+	$('#legend-highchart').html(legend_non_jo+legend_jo);
 }
 
 /**
