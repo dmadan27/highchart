@@ -24,7 +24,7 @@
 	$data_wika = json_decode($get_data, true);
 
 	// passing data
-	$temp_anak_perusahaan = $anak_perusahaan;
+	// $temp_anak_perusahaan = $anak_perusahaan;
 
 	$data = array();
 	$total = 0;
@@ -45,9 +45,9 @@
 		// jika bulan lebih kecil sama dengan get bulan
 		if($value['Tactic'] && $month <= $get_bulan){
 			// pecah anak perusahaan untuk difilter
-			foreach($temp_anak_perusahaan as $key => $row){
+			// foreach($temp_anak_perusahaan as $key => $row){
 				// jika ada yg sesuai dgn anak perusahaan
-				if($company == $row['company']){
+				if($company == $get_company){
 					if($get_jenis == 'jumlah_proyek'){
 						$dataRow = array();
 						$dataRow['title'] = $proyek;
@@ -67,7 +67,7 @@
 						$total += $diperoleh;
 					}
 				}
-			}
+			// }
 		}
 	}
 
