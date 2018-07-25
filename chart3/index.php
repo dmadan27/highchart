@@ -32,6 +32,7 @@
 
 			<!-- highchart -->
 			<div class="container-highchart">
+				<input type="hidden" id="company" value="<?= $get_company; ?>">
 				<!-- form tahun dan bulan -->
 				<div class="form-highchart">
 					<!-- gambar calendar -->
@@ -71,8 +72,8 @@
 
 			<!-- js custom highchart -->
 			<script type="text/javascript" src="assets/js/init.js"></script>
-			<script type="text/javascript" src="chart1/chart.js"></script>
-			<script type="text/javascript" src="chart1/detail.js"></script>
+			<script type="text/javascript" src="chart3/chart.js"></script>
+			<script type="text/javascript" src="chart3/detail.js"></script>
 		<!--  -->
 	</body>
 </html>

@@ -24,10 +24,16 @@
 	$data_wika = json_decode($get_data, true);
 
 	// passing data
-	$temp_anak_perusahaan = $anak_perusahaan;
+	// $temp_anak_perusahaan = $anak_perusahaan;
 
 	$data = array();
 	$total = 0;
+
+	// foreach ($anak_perusahaan as $key => $value) {
+	// 	if($get_company == $value['company']){
+	// 		$cek_company = $value['company'];
+	// 	}
+	// }
 
 	// pecah data wika untuk filter sesuai dengan mapping perusahaan
 	foreach ($data_wika as $value) {
@@ -46,9 +52,9 @@
 		// jika bulan lebih kecil sama dengan get bulan
 		if($month <= $get_bulan){
 			// pecah anak perusahaan untuk difilter
-			foreach($temp_anak_perusahaan as $key => $row){
+			// foreach($anak_perusahaan as $key => $row){
 				// jika ada yg sesuai dgn anak perusahaan
-				if($get_company == $row['company']){
+				if($get_company == $company){
 					if($get_jenis == 'RKAP'){
 						$dataRow = array();
 						$dataRow['title'] = $proyek;
@@ -58,7 +64,7 @@
 						$data[] = $dataRow;
 						$total += $rkap;
 					}
-					else if($get_jenis == 'Terendah' && $status == $get_jenis){
+					else if($get_jenis == 'Terendah' && $status == 'Terendah'){
 						$dataRow = array();
 						$dataRow['title'] = $proyek;
 						$dataRow['keterangan'] = $status;
@@ -67,7 +73,7 @@
 						$data[] = $dataRow;
 						$total += $diperoleh;
 					}
-					else if($get_jenis == 'Terkontrak' && $status == $get_jenis){
+					else if($get_jenis == 'Terkontrak' && $status = 'Terkontrak'){
 						$dataRow = array();
 						$dataRow['title'] = $proyek;
 						$dataRow['keterangan'] = $status;
@@ -78,9 +84,7 @@
 					}
 
 				}
-				// sum terendah + terkontrak
-				// $anak_perusahaan[$key]['sum_terendah_terkontrak'] = $anak_perusahaan[$key]['terendah'] + $anak_perusahaan[$key]['terkontrak'];
-			}
+			// }
 		}
 	}
 

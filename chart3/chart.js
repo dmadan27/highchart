@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	get_data_chart(function(data){
-		generate_chart('body-highchart', data);
+		// generate_chart('body-highchart', data);
 	});
 
 	// on click btn highchart
@@ -30,10 +30,11 @@ function get_data_chart(handleData){
 	var data = {
 		'tahun': $('#tahun').val().trim(),
 		'bulan': $('#bulan').val().trim(),
+		'company': $('#company').val().trim(),
 	};
 
 	$.ajax({
-		url: "chart1/chart.php",
+		url: "chart3/chart.php",
 		type: "POST",
 		dataType: "JSON",
 		data: data,
@@ -80,9 +81,6 @@ function generate_chart(container, data){
 			// chart 3d
 			options3d: {
 				enabled: true,
-	            alpha: 10,
-	            beta: 0,
-	            depth: 75,
 			}
 		},
 		title: {
@@ -102,11 +100,10 @@ function generate_chart(container, data){
 					allowOverlap: true,
 					style: {
 						fontFamily:'Arial, Helvetica, sans-serif', 
-						fontSize:12 
+						fontSize: 20 
 					},
 					formatter: function() {
-					    if(this.y > 0) return Highcharts.numberFormat(this.y, 3);
-					    else return '';
+					    return Highcharts.numberFormat(this.y, 2);
 				 	}
 				}
 			}
@@ -118,10 +115,7 @@ function generate_chart(container, data){
 		xAxis: {
 			categories: data.xAxis.categories,
             labels: {
-            	formatter: function(){
-            		var value = this.value.split(' | ');
-            		return value[0]+'<br/>'+value[1];
-            	}
+            	rotation: 0
             }
 		},
 		// label yAxis chart

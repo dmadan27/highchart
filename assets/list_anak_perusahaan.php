@@ -62,7 +62,7 @@
 			'persentase_non_jo' => 0,
 		),
 		array(
-			'company' => '8d6255cb-1067-4ac9-a9bf-9c086363267',
+			'company' => 'c0b9186f-75d6-4865-b0f3-890d7db8fa2e',
 			'name' => 'WG (Wika Gedung)',
 			'rkap' => 0,
 			'terendah' => 0,
@@ -83,8 +83,8 @@
 		),
 		// ganti
 		array(
-			'company' => '9c791f07-bf39-4186-a317-7965e547dde7',
-			'name' => 'Wijaya Karya',
+			'company' => '3d8143f3-36b2-4c20-a1ec-e27bde301d4d',
+			'name' => 'WRK (Wika Rekayasa Konstruksi)',
 			'rkap' => 0,
 			'terendah' => 0,
 			'terkontrak' => 0,

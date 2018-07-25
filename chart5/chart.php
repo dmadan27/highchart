@@ -40,7 +40,7 @@
 						$anak_perusahaan[$key]['diperoleh'] += $diperoleh;
 				}
 
-				if($anak_perusahaan[$key]['jumlah_terendah_terkontrak'] > 0){
+				if($anak_perusahaan[$key]['diperoleh'] > 0){
 					$anak_perusahaan[$key]['ci_nilai'] = $anak_perusahaan[$key]['diperoleh']/$anak_perusahaan[$key]['nilai_tactic']*100;
 				}
 			}

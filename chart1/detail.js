@@ -2,7 +2,7 @@
 *
 */
 function get_detail_data(id, jenis){
-	// alert('Data yang diklik adalah data dengan id company: '+id+' dan jenis: '+jenis);
+	console.log('Data yang diklik adalah data dengan id company: '+id+' dan jenis: '+jenis);
 
 	var data = {
 		'company': id,

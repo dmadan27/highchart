@@ -72,7 +72,8 @@
 		$dataValue_terkontrak['y'] = $value['terkontrak']/1000000;
 				
 		// passing label
-		$categories[] = $value['name'].' | Diperoleh : '.$value['sum_terendah_terkontrak'].' T';
+		$sum = $value['sum_terendah_terkontrak']/1000000;
+		$categories[] = $value['name'].' | Diperoleh : '.$sum.' T';
 
 		// passing data total-highchart
 		$total_sum_terendah_terkontrak += $value['sum_terendah_terkontrak']; 
@@ -122,8 +123,9 @@
 				'color' => '#8ecb60',
 			),
 		),
-		'total_highchart' => 'Total Diperoleh : '.number_format($total_sum_terendah_terkontrak, 2, ',', ',').' T',
+		'total_highchart' => 'Total Diperoleh : '.number_format($total_sum_terendah_terkontrak/1000000, 2, ',', ',').' T',
 		'legend_highchart' => $legend_highchart,
+		'data_wika' => $data_wika,
 	);
 
 	echo json_encode($output);
