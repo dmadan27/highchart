@@ -2,6 +2,8 @@
 	// inisialisasi get data tahun dan bulan
 	$get_tahun = isset($_POST['tahun']) ? $_POST['tahun'] : false;
 	$get_bulan = isset($_POST['bulan']) ? $_POST['bulan'] : false;
+	// $get_tahun = '2018';
+	// $get_bulan = '07';
 	$get_company = isset($_POST['company']) ? $_POST['company'] : false;
 
 	// load list anak perusahaan
@@ -13,131 +15,130 @@
 	// encode data wika menjadi array biasa
 	$data_wika = json_decode($get_data, true);
 
+	// $temp_anak_perusahaan = $anak_perusahaan;
+
 	foreach ($anak_perusahaan as $key => $value) {
 		if($get_company == $key){
 			$nama = $value['name'];
 			$company_ = $value['company'];
 		}
-	}
+	}	
 
-	$groups = $groups_ = $kategori = array();
+	$group = array();
 
-	$total = $total_a = $total_b = 0;
+	foreach($data_wika as $value){
+		$tempDate = $value['Create'];
 
-	// pecah data wika untuk filter sesuai dengan mapping perusahaan
-	for($i=0; $i<count($data_wika); $i++){
-		$nilai = number_format($data_wika[$i]['Diperoleh']/1000000, 4);
-
-		$tmpDate = $data_wika[$i]['Create'];
-		$date = substr($tmpDate,0,-8);
+		$date = substr($tempDate,0,-8);
 		$month = substr($date,5,-4);
+		$year = $value["Tahun"];
 
-		if($month <= $get_bulan){
-			if($data_wika[$i]['Sumber'] && $data_wika[$i]['Sumber'] != "-"){
-				$key = $data_wika[$i]['Sumber'];
+		$company = $value['Company'];
+		$status = $value['Status'];
+		$sumber = $value['Sumber'];
+		$rkap = $value['RKAP'];
+		$diperoleh = number_format($value['Diperoleh']/1000000, 4);
 
-				if($data_wika[$i]['Status'] == "Terendah" || $data_wika[$i]['Status'] == "Terkontrak"){
-					if($data_wika[$i]['Company'] == $company_){
-						if(!isset($groups[$key])){
-							if($data_wika[$i]['Status'] == "Terendah"){
-								$groups[$key] = array('y' => $nilai, 'id' => $company_);
-								$groups_[$key] = array('y' => 0, 'id' => $company_);
-								$total_a += $data_wika[$i]['Diperoleh'];
-							}
-
-							if($data_wika[$i]['Status'] == "Terkontrak"){
-								$groups[$key] = array('y' => 0, 'id' => $company_);
-								$groups_[$key] = array('y' => $nilai, 'id' => $company_);
-								$total_b += $data_wika[$i]['Diperoleh'];
-							}
-
-							$sum = 0;
-
-							for($j=0; $j<count($data_wika); $j++){
-								if($data_wika[$j]['Sumber'] == $key && $data_wika[$j]['Company'] == $company_){
-									if($data_wika[$j]['Status'] == "Terendah" || $data_wika[$j]['Terkontrak']){
-										$temp = $sum;
-										$sum = $temp+$data_wika[$j]['Diperoleh'];
-									}
-								}
-							}
-
-							$decimalsum = number_format($sum/1000000, 2, ',', ',');
-							$kategori[$i] = "$key<br>Total : $decimalsum";							
+		if(($month <= $get_bulan)){
+			if($company == $company_){
+				if($sumber && $sumber != '-'){
+					$temp_sumber = $sumber;
+					if(!isset($group[$temp_sumber])){
+						if($status == 'Terendah'){
+							$group[$temp_sumber]['Terendah'] = $diperoleh;
+							$group[$temp_sumber]['Terkontrak'] = 0;
+							$group[$temp_sumber]['sum'] = $group[$temp_sumber]['Terendah'] + $group[$temp_sumber]['Terkontrak'];
 						}
-						else if(isset($groups[$key])){
-							if($data_wika[$i]['Status'] == "Terendah"){
-								$groups[$key]['y'] += $nilai;
-								$total_a += $data_wika[$i]['Diperoleh'];
-							}
 
-							if($data_wika[$i]['Status'] == "Terkontrak"){
-								$groups_[$key]['y'] += $nilai;
-								$total_b += $data_wika[$i]['Diperoleh'];
-							}
+						if($status == 'Terkontrak'){
+							$group[$temp_sumber]['Terendah'] = 0;
+							$group[$temp_sumber]['Terkontrak'] = $diperoleh;
+							$group[$temp_sumber]['sum'] = $group[$temp_sumber]['Terendah'] + $group[$temp_sumber]['Terkontrak'];	
 						}
+
 					}
-				}
+					else{
+						if($status == 'Terendah'){
+							$group[$temp_sumber]['Terendah'] += $diperoleh;
+						}
+
+						if($status == 'Terkontrak'){
+							$group[$temp_sumber]['Terkontrak'] += $diperoleh;	
+						}
+
+						$group[$temp_sumber]['sum'] = $group[$temp_sumber]['Terendah'] + $group[$temp_sumber]['Terkontrak'];
+					}
+				}			
 			}
 		}
 	}
 
-	$total = $total_a+$total_b;
-	$list_kategori = json_encode(array_values($kategori));
-	$filter = array_values(array_filter($groups));
-	$filter_ = array_values(array_filter($groups_));
+	$data_terendah = $data_terkontrak = array();
+	$kategori = array();
+	$kategori['name'] = $nama;
 
-	$combine_1 = json_encode($filter, JSON_NUMERIC_CHECK);
-	$combine_2 = json_encode($filter_, JSON_NUMERIC_CHECK);
+	$total_diperoleh = $total_terendah = $total_terkontrak = 0;
 
+	foreach($group as $key => $value){
+		$dataValue_terendah = $dataValue_terkontrak = array();
 
-	// // passing data jo
-	// $dataValue_jo['id'] = $company_;
-	// $dataValue_jo['name'] = '<span class="data-donat">JO :</span><br>';
-	// $dataValue_jo['name'] .= '<span class="data-donat">'.number_format($jo/1000000, 2, ',', ',').' T</span><br>';
-	// $dataValue_jo['name'] .= '<span class="data-donat">('.number_format($persentase_jo, 2, ',', ',').'%)</span>';
-	// $dataValue_jo['y'] = $jo;
-	// $dataValue_jo['color'] = '#8ecb60';
-	// $dataValue_jo['jenis'] = 'JO';
+		$kategori['categories'][] = $key.'<br>Total : '.number_format($value['sum'], 2, ',', ',');
 
-	// // passing data non jo
-	// $dataValue_non_jo['id'] = $company_;
-	// $dataValue_non_jo['name'] = '<span class="data-donat">NON JO :</span><br>';
-	// $dataValue_non_jo['name'] .= '<span class="data-donat">'.number_format($non_jo/1000000, 2, ',', ',').' T</span><br>';
-	// $dataValue_non_jo['name'] .= '<span class="data-donat">('.number_format($persentase_non_jo, 2, ',', ',').'%)</span>';
-	// $dataValue_non_jo['y'] = $non_jo;
-	// $dataValue_non_jo['color'] = '#64b8df';
-	// $dataValue_non_jo['jenis'] = 'Non JO';
+		$dataValue_terendah[$key]['id'] = $company_;
+		$dataValue_terendah[$key]['jenis'] = 'Terendah';
+		$dataValue_terendah[$key]['sumber'] = $key;
+		$dataValue_terendah[$key]['y'] = floatval($value['Terendah']);
 
-	// $text = $nama.'<br>Total : '.number_format($total_jo_non_jo/1000000, 2, ',', ',').' T';
+		$dataValue_terkontrak[$key]['id'] = $company_;
+		$dataValue_terkontrak[$key]['jenis'] = 'Terkontrak';
+		$dataValue_terkontrak[$key]['sumber'] = $key;
+		$dataValue_terkontrak[$key]['y'] = floatval($value['Terkontrak']);
 
-	// $data = array($dataValue_jo, $dataValue_non_jo);
+		$total_diperoleh += $value['Terendah']+$value['Terkontrak'];
+		$total_terendah += $value['Terendah'];
+		$total_terkontrak += $value['Terkontrak'];
 
-	// $legend_highchart = array(
-	// 	'jo' => '<b>JO : '.number_format($persentase_jo, 2, ',', ',').'%</b>',
-	// 	'non_jo' => '<b>Non JO : '.number_format($persentase_non_jo, 2, ',', ',').'%</b>' 
-	// );
+		$data_terendah[] = $dataValue_terendah;
+		$data_terkontrak[] = $dataValue_terkontrak;		
+	}
 
-	// // output yg akan dikirim ke highchart
-	// $output = array(
-	// 	'total_diperoleh' => '<b>Total Diperoleh : '.number_format($total_jo_non_jo/1000000, 2, ',', ',').' T</b>',
-	// 	'text' => $text,
-	// 	'data' => $data,
-	// 	'legend_highchart' => $legend_highchart,
-	// 	// 'anak_perusahaan' => $anak_perusahaan,
-	// );
+	$data_terendah_filter = $data_terkontrak_filter = array();
+	$combine_terendah = $combine_terkontrak = $list_kategori = array();
+	
+	for($i=0; $i<count($data_terendah); $i++){
+		$data_terendah_filter[$i] = isset($data_terendah[$i]) ? array_values(array_filter($data_terendah[$i])) : array();
+		$data_terkontrak_filter[$i] = isset($data_terkontrak[$i]) ? array_values(array_filter($data_terkontrak[$i])) : array();
+
+		$combine_terendah = array_merge($combine_terendah, $data_terendah_filter[$i]);
+		$combine_terkontrak = array_merge($combine_terkontrak, $data_terkontrak_filter[$i]);
+	}
+
+	$legend_highchart = array(
+		'terendah' => '<b>Terendah : '.number_format($total_terendah, 2, ',', ',').' T</b>',
+		'terkontrak' => '<b>Terkontrak : '.number_format($total_terkontrak, 2, ',', ',').' T</b>',
+	);
 
 	$output = array(
-		'data' => array(
-			'id' => $company_,
-			'name' => $nama,
-			'total' => $total,
-			'list_kategori' => $list_kategori,
-			'filter' => $filter,
-			'filter_' => $filter_,
-			'list_1' => $combine_1,
-			'list_2' => $combine_2,
+		'data' => $group,
+		'data_kategori' => array_values(array($kategori)),
+		'series' => array(
+			// data terendah
+			array(
+				'name' => 'Terendah',
+				'data' => $combine_terendah,
+				'point' => '',
+				'color' => '#64b8df',
+			),
+			// data terkontrak
+			array(
+				'name' => 'Terkontrak',
+				'data' => $combine_terkontrak,
+				'point' => '',
+				'color' => '#8ecb60',
+			),
 		),
+		'total_diperoleh' => '<b>Total Diperoleh : '.number_format($total_diperoleh, 2, ',', ',').' T</b>',
+		'legend_highchart' => $legend_highchart,
 	);
 
 	echo json_encode($output);

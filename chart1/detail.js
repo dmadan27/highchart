@@ -2,7 +2,7 @@
 *
 */
 function get_detail_data(id, jenis){
-	console.log('Data yang diklik adalah data dengan id company: '+id+' dan jenis: '+jenis);
+	// console.log('Data yang diklik adalah data dengan id company: '+id+' dan jenis: '+jenis);
 
 	var data = {
 		'company': id,
@@ -21,7 +21,7 @@ function get_detail_data(id, jenis){
 		},
 		success: function(output){
 			$('.container').unblock();
-			console.log(output);
+			// console.log(output);
 
 			// hide highchart
 			$('.container-highchart').hide();

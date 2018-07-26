@@ -21,7 +21,7 @@ function get_detail_data(id, jenis){
 		},
 		success: function(output){
 			$('.container').unblock();
-			console.log(output);
+			// console.log(output);
 
 			// hide highchart
 			$('.container-highchart').hide();

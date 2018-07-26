@@ -53,18 +53,18 @@
 
 	// passing data jo
 	$dataValue_jo['id'] = $company_;
-	$dataValue_jo['name'] = '<span class="data-donat">JO :</span><br>';
-	$dataValue_jo['name'] .= '<span class="data-donat">'.number_format($jo/1000000, 2, ',', ',').' T</span><br>';
-	$dataValue_jo['name'] .= '<span class="data-donat">('.number_format($persentase_jo, 2, ',', ',').'%)</span>';
+	$dataValue_jo['name'] = '<span class="data-donat" style="color: #999">JO :</span><br>';
+	$dataValue_jo['name'] .= '<span class="data-donat" style="color: #999">'.number_format($jo/1000000, 2, ',', ',').' T</span><br>';
+	$dataValue_jo['name'] .= '<span class="data-donat" style="color: #999">('.number_format($persentase_jo, 2, ',', ',').'%)</span>';
 	$dataValue_jo['y'] = $jo;
 	$dataValue_jo['color'] = '#8ecb60';
 	$dataValue_jo['jenis'] = 'JO';
 
 	// passing data non jo
 	$dataValue_non_jo['id'] = $company_;
-	$dataValue_non_jo['name'] = '<span class="data-donat">NON JO :</span><br>';
-	$dataValue_non_jo['name'] .= '<span class="data-donat">'.number_format($non_jo/1000000, 2, ',', ',').' T</span><br>';
-	$dataValue_non_jo['name'] .= '<span class="data-donat">('.number_format($persentase_non_jo, 2, ',', ',').'%)</span>';
+	$dataValue_non_jo['name'] = '<span class="data-donat" style="color: #999">NON JO :</span><br>';
+	$dataValue_non_jo['name'] .= '<span class="data-donat" style="color: #999">'.number_format($non_jo/1000000, 2, ',', ',').' T</span><br>';
+	$dataValue_non_jo['name'] .= '<span class="data-donat" style="color: #999">('.number_format($persentase_non_jo, 2, ',', ',').'%)</span>';
 	$dataValue_non_jo['y'] = $non_jo;
 	$dataValue_non_jo['color'] = '#64b8df';
 	$dataValue_non_jo['jenis'] = 'Non JO';

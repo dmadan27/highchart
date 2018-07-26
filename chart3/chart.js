@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	get_data_chart(function(data){
-		// generate_chart('body-highchart', data);
+		generate_chart('body-highchart', data);
 	});
 
 	// on click btn highchart
@@ -42,7 +42,7 @@ function get_data_chart(handleData){
 			$('.container').block({message: "Please Wait.."});
 		},
 		success: function(output){
-			console.log(output);
+			// console.log(output);
 			$('.container').unblock();
 			handleData(output);
 		},
@@ -69,7 +69,7 @@ function generate_chart(container, data){
 	data = addEvent_onClick(data);
 
 	// set total-highchart
-	$('#total-highchart').html('<b>'+data.total_highchart+'</b>');
+	$('#total-highchart').html('<b>'+data.total_diperoleh+'</b>');
 
 	// set legend-highchart
 	setLegend(data.legend_highchart);
@@ -113,7 +113,7 @@ function generate_chart(container, data){
 		},
 		// label xAxis chart
 		xAxis: {
-			categories: data.xAxis.categories,
+			categories: data.data_kategori,
             labels: {
             	rotation: 0
             }
@@ -145,7 +145,7 @@ function addEvent_onClick(data){
 		data.series[i].point = {
 			events: {
 				click: function(event){
-					get_detail_data(this.id, this.jenis);
+					get_detail_data(this.id, this.jenis, this.sumber);
 				}
 			}
 		}
@@ -158,14 +158,12 @@ function addEvent_onClick(data){
 *
 */
 function setLegend(data){
-	var legend_rkap = '<img src="assets/image/image2/merah.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
-					'<span style="color:#ed7d64;">'+data.rkap+'</span></br>';
 	var legend_terendah = '<img src="assets/image/image2/biru.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
 					'<span style="color:#64b8df;">'+data.terendah+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
 	var legend_terkontrak = '<img src="assets/image/image2/hijau.png" style="width:10px;height:10px;border-radius:5px;" />&nbsp;'+
 					'<span style="color:#8ecb60;">'+data.terkontrak+'</span>';
 
-	$('#legend-highchart').html(legend_rkap+legend_terendah+legend_terkontrak);
+	$('#legend-highchart').html(legend_terendah+legend_terkontrak);
 }
 
 /**

@@ -41,7 +41,7 @@ function get_data_chart(handleData){
 			$('.container').block({message: "Please Wait.."});
 		},
 		success: function(output){
-			console.log(output.xAxis.categories);
+			// console.log(output.xAxis.categories);
 			$('.container').unblock();
 			handleData(output);
 		},

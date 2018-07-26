@@ -1,6 +1,9 @@
 $(document).ready(function(){
 	setBulan();
 	setTahun();
+
+	// $.blockUI.defaults.overlayCSS.backgroundColor = '#fff';
+	$.blockUI.defaults.overlayCSS.opacity = 0; 
 });
 /**
 *
