@@ -13,6 +13,7 @@
 	// encode data wika menjadi array biasa
 	$data_wika = json_decode($get_data, true);
 
+	// get data anak perusahaan
 	foreach ($anak_perusahaan as $key => $value) {
 		if($get_company == $key){
 			$nama = $value['name'];

@@ -1,0 +1,18 @@
+		<table class="table-detail" border="1px solid black">
+			<thead>
+				<tr>
+					<th width="60%">Nama Proyek</th>
+					<th width="25%">Diperoleh</th>
+					<th width="15%">Keterangan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td>testing_pemberi_kerja</td><td>2.000.000</td><td>Terkontrak</td></tr>			</tbody>
+			<tfoot>
+				<tr>
+					<th color="black" colspan="3" line-height="bold">
+						Total Diperoleh: 2.000.000					</th>
+				</tr>
+			</tfoot>
+		</table>
+	

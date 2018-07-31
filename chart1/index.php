@@ -67,7 +67,7 @@
 			<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 			<script src="https://code.highcharts.com/modules/exporting.js"></script>
 			<!-- komentari Group.js jika tidak digunakan -->
-			<!-- <script src="js/Group.js"></script> -->
+			<!-- <script src="js/group.js"></script> -->
 
 			<!-- js custom highchart -->
 			<script type="text/javascript" src="assets/js/init.js"></script>

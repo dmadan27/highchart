@@ -23,9 +23,6 @@
 	// encode data wika menjadi array biasa
 	$data_wika = json_decode($get_data, true);
 
-	// passing data
-	// $temp_anak_perusahaan = $anak_perusahaan;
-
 	$data = array();
 	$total = 0;
 
@@ -47,32 +44,29 @@
 
 		// jika bulan lebih kecil sama dengan get bulan
 		if($month <= $get_bulan){
-			// pecah anak perusahaan untuk difilter
-			// foreach($temp_anak_perusahaan as $key => $row){
-				// jika ada yg sesuai dgn anak perusahaan
-				if($get_company == $company){
-					if($status == 'Terendah' || $status == 'Terkontrak'){
-						if($get_jenis == 'JO' && $jenis == 'JO'){
-							$dataRow = array();	
-							$dataRow['pemberi'] = $pemberi;
-							$dataRow['title'] = $proyek;
-							$dataRow['keterangan'] = $status;
-							$dataRow['nilai'] = number_format($diperoleh, 0, ',', '.');
-							$data[] = $dataRow;
-							$total += $diperoleh;
-						}
-						else if($get_jenis == 'Non JO' && $jenis == 'Non JO'){
-							$dataRow = array();	
-							$dataRow['pemberi'] = $pemberi;
-							$dataRow['title'] = $proyek;
-							$dataRow['keterangan'] = $status;
-							$dataRow['nilai'] = number_format($diperoleh, 0, ',', '.');
-							$data[] = $dataRow;
-							$total += $diperoleh; 		
-						}
+			// jika ada yg sesuai dgn anak perusahaan
+			if($get_company == $company){
+				if($status == 'Terendah' || $status == 'Terkontrak'){
+					if($get_jenis == 'JO' && $jenis == 'JO'){
+						$dataRow = array();	
+						$dataRow['pemberi'] = $pemberi;
+						$dataRow['title'] = $proyek;
+						$dataRow['keterangan'] = $status;
+						$dataRow['nilai'] = number_format($diperoleh, 0, ',', '.');
+						$data[] = $dataRow;
+						$total += $diperoleh;
+					}
+					else if($get_jenis == 'Non JO' && $jenis == 'Non JO'){
+						$dataRow = array();	
+						$dataRow['pemberi'] = $pemberi;
+						$dataRow['title'] = $proyek;
+						$dataRow['keterangan'] = $status;
+						$dataRow['nilai'] = number_format($diperoleh, 0, ',', '.');
+						$data[] = $dataRow;
+						$total += $diperoleh; 		
 					}
 				}
-			// }
+			}
 		}
 	}
 
@@ -82,6 +76,7 @@
 		'data_wika' => $data_wika,
 	);
 
+	// untuk download
 	if(!$get_download) echo json_encode($output);
 	else if($get_download && $get_download == 'yes'){ // export excel
 		// Fungsi header dengan mengirimkan raw data excel

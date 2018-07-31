@@ -155,111 +155,111 @@ function generate_chart(container, data){
 /**
 *
 */
-function generate_chart_dinamis(container, data){
-	// set option highchart
-	Highcharts.setOptions({
-		lang: {
-    		decimalPoint: ',',
-        	thousandsSep: ' '
-		}
-	});
+// function generate_chart_dinamis(container, data){
+// 	// set option highchart
+// 	Highcharts.setOptions({
+// 		lang: {
+//     		decimalPoint: ',',
+//         	thousandsSep: ' '
+// 		}
+// 	});
 
-	// // set total-highchart
-	// $('#total-highchart').html('<b>'+data.total_highchart+'</b>');
+// 	// // set total-highchart
+// 	// $('#total-highchart').html('<b>'+data.total_highchart+'</b>');
 
-	// // set legend-highchart
-	// setLegend(data.legend_highchart);
+// 	// // set legend-highchart
+// 	// setLegend(data.legend_highchart);
 
-	// lakukan perulangan
-	$.each(data.data, function(i, item){
-		var id_container = 'container'+(i+1);
-		var div = '<div class="container-donat" id="'+id_container+'"></div>';
-		var text = data.text[i];
+// 	// lakukan perulangan
+// 	$.each(data.data, function(i, item){
+// 		var id_container = 'container'+(i+1);
+// 		var div = '<div class="container-donat" id="'+id_container+'"></div>';
+// 		var text = data.text[i];
 
-		// append div container
-		$('#body-highchart').append(div);
+// 		// append div container
+// 		$('#body-highchart').append(div);
 
-		// console.log(item);
+// 		// console.log(item);
 
-		// generate chart
-		var myChart = Highcharts.chart(id_container, {
-			chart: {
-				type: 'pie',
-				// chart 3d
-				options3d: {
-					enabled: true,
-		            alpha: 15,
-		            beta: 0,
-				}
-			},
-			title: {
-				text: text,
-				margin: 0,
-				y: 0,
-				x: 0,
-				align: 'center',
-				verticalAlign: 'middle',
-				style: {
-					color: '#4572A7',
-					fontSize: '15px'
-				}
-			},
-			tooltip: {
-				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-			},
-			subtitle: {
-				text: ''
-			},
-			plotOptions: {
-				pie: {
-					cursor: 'pointer',
-					innerSize: 120,
-					depth: 25,
-					dataLabels: {
-						distance: 1
-					}
-				}
-			},
-			credits: {
-				enabled: false
-			},
-			exporting: {
-				enabled: false
-			},
-			series: [{
-					type: 'pie',
-					name: 'Persentase',
-					data: item,
-					point: {
-						events:{
-							click: function(event){
-								get_detail_data(this.id, this.jenis);
-							}
-						}
-					}
-				}
-			],
-			responsive: {
-				rules: [{
-						condition: {
-							maxWidth: 320
-						},
-						chartOptions: {
-							plotOptions: {
-								pie: {
-									cursor: 'pointer',
-									innerSize: 120,
-									depth: 25,
-									dataLabels: false
-								}
-							}
-						}
-					}
-				]
-			}		
-		});
-	});
-}
+// 		// generate chart
+// 		var myChart = Highcharts.chart(id_container, {
+// 			chart: {
+// 				type: 'pie',
+// 				// chart 3d
+// 				options3d: {
+// 					enabled: true,
+// 		            alpha: 15,
+// 		            beta: 0,
+// 				}
+// 			},
+// 			title: {
+// 				text: text,
+// 				margin: 0,
+// 				y: 0,
+// 				x: 0,
+// 				align: 'center',
+// 				verticalAlign: 'middle',
+// 				style: {
+// 					color: '#4572A7',
+// 					fontSize: '15px'
+// 				}
+// 			},
+// 			tooltip: {
+// 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+// 			},
+// 			subtitle: {
+// 				text: ''
+// 			},
+// 			plotOptions: {
+// 				pie: {
+// 					cursor: 'pointer',
+// 					innerSize: 120,
+// 					depth: 25,
+// 					dataLabels: {
+// 						distance: 1
+// 					}
+// 				}
+// 			},
+// 			credits: {
+// 				enabled: false
+// 			},
+// 			exporting: {
+// 				enabled: false
+// 			},
+// 			series: [{
+// 					type: 'pie',
+// 					name: 'Persentase',
+// 					data: item,
+// 					point: {
+// 						events:{
+// 							click: function(event){
+// 								get_detail_data(this.id, this.jenis);
+// 							}
+// 						}
+// 					}
+// 				}
+// 			],
+// 			responsive: {
+// 				rules: [{
+// 						condition: {
+// 							maxWidth: 320
+// 						},
+// 						chartOptions: {
+// 							plotOptions: {
+// 								pie: {
+// 									cursor: 'pointer',
+// 									innerSize: 120,
+// 									depth: 25,
+// 									dataLabels: false
+// 								}
+// 							}
+// 						}
+// 					}
+// 				]
+// 			}		
+// 		});
+// 	});
+// }
 
 /**
 *

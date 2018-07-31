@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Wika - JO vs Non JO (Dalam Trilyun)</title>
+		<title>Wika - OK Terendah dan Terkontrak per Pemberi Kerja (Dalam Trilyun)</title>
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@
 				<table border="0" style="width: 100%">
 					<tr>
 						<!-- judul hightchart -->
-						<td style="width: 90%; color: #FFF;"><span id="title_highchart">&nbsp;&nbsp;JO vs Non JO (Dalam Trilyun)</span></td>
+						<td style="width: 90%; color: #FFF;"><span id="title_highchart">&nbsp;&nbsp;OK Terendah dan Terkontrak per Pemberi Kerja (Dalam Trilyun)</span></td>
 						<!-- button highchart -->
 						<td style="width: 10%; color:#FFF;"><span id="btn_highchart" style="cursor: pointer;"><i class="fa fa-bar-chart-o"></i></span></td>
 					</tr>
@@ -68,12 +68,12 @@
 			<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 			<script src="https://code.highcharts.com/modules/exporting.js"></script>
 			<!-- komentari Group.js jika tidak digunakan -->
-			<!-- <script src="js/group.js"></script> -->
+			<script src="assets/js/group.js"></script>
 
 			<!-- js custom highchart -->
 			<script type="text/javascript" src="assets/js/init.js"></script>
-			<script type="text/javascript" src="chart2/chart.js"></script>
-			<script type="text/javascript" src="chart2/detail.js"></script>
+			<script type="text/javascript" src="chart6/chart.js"></script>
+			<script type="text/javascript" src="chart6/detail.js"></script>
 		<!--  -->
 	</body>
 </html>
