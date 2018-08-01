@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	get_data_chart(function(data){
-		// generate_chart('body-highchart', data);
+		generate_chart('body-highchart', data);
 	});
 
 	// on click btn highchart
